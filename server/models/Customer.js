@@ -18,6 +18,9 @@ const customerSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  orders: {
+    type: Array
+  },
   registeredOn: {
     type: Date,
     default: Date.now

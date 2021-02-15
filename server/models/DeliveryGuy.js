@@ -17,6 +17,15 @@ const deliveryGuySchema = new mogoose.Schema({
     required: true,
     unique: true
   },
+  deliverOrders: {
+    type: Array
+  },
+  recieveOrders: {
+    type: Array
+  },
+  ratings: {
+    type: Number
+  },
   registeredOn: {
     type: Date,
     default: Date.now

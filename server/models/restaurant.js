@@ -57,7 +57,7 @@ const restaurantSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    collections: [{
+    items: [{
       name: {
         type: String,
         required: true
@@ -77,7 +77,8 @@ const restaurantSchema = new mongoose.Schema({
       },
       image: {
         type: String
-      }
+      },
+      offers: {}
     }]
   }],
   typeOfRestaurant: {
@@ -87,7 +88,7 @@ const restaurantSchema = new mongoose.Schema({
   ratings: {
     type: Number
   },
-  orderDetails: {
+  orders: {
     type: Array
   },
   gst: {},
