@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const restaurantSchema = new mongoose.Schema({
-  name: {
+  restaurantName: {
     type: String,
     required: true,
   },
@@ -20,11 +20,19 @@ const restaurantSchema = new mongoose.Schema({
       unique: true
     }
   }],
+  postalCode: {
+    type: String,
+    required: true
+  },
   pocDesignation: {
     type: String,
     required: true
   },
   outlet: [{
+    landmark: {
+      type: String,
+      required: true
+    },
     city: {
       type: String,
       required: true
@@ -63,6 +71,10 @@ const restaurantSchema = new mongoose.Schema({
         required: false,
         default: ''
       },
+      vegOrNonVeg: {
+        type: String,
+        required: true
+      },
       image: {
         type: String
       }
@@ -75,11 +87,30 @@ const restaurantSchema = new mongoose.Schema({
   ratings: {
     type: Number
   },
-  license: {
-    type: String,
-    required: true
+  orderDetails: {
+    type: Array
   },
-  createdOn: {
+  gst: {},
+  fssai: {
+    licenceNumber: {
+      type: String,
+      required: true
+    },
+    registeredName: {
+      type: String,
+      required: true
+    },
+    address: {
+      type: String,
+      required: true
+    },
+    expiryDate: {
+      type: String,
+      required: true
+    },
+    certificateFile: {}
+  },
+  registeredOn: {
     type: Date,
     default: Date.now,
   },
