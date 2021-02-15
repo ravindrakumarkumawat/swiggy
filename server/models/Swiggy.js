@@ -1,9 +1,20 @@
-const mongoose = require("mongoose")
+const Customer = require("./Customer");
+
+const mongoose, { ObjectId } = require("mongoose");
+
 const swiggySchema = new mongoose.Schema({
-  customers: [],
-  deliveryGuy: [],
-  restaurants: [],  
-})
+  customer: {
+    type: ObjectId,
+    ref: 'Customer'
+  },
+  deliveryGuy: {
+    type: ObjectId,
+    ref: 'DeliveryGuy'
+  },
+  restaurant: {
+    type: ObjectId,
+    ref: 'Restaurant'
+  },
+});
 
-
-module.exports = Swiggy = mongoose.model("swiggy", swiggySchema)
+module.exports = Swiggy = mongoose.model("swiggy", swiggySchema);

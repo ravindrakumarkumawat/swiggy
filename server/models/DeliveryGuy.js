@@ -4,6 +4,10 @@ const deliveryGuySchema = new mogoose.Schema({
     type: String,
     required: true
   },
+  serviceArea: {
+    type: String,
+    required: true
+  },
   city: {
     type: String,
     required: true

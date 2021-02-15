@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const restaurantSchema = new mongoose.Schema({
-  restaurantName: {
+  name: {
     type: String,
     required: true,
   },
@@ -81,35 +81,16 @@ const restaurantSchema = new mongoose.Schema({
       offers: {}
     }]
   }],
-  typeOfRestaurant: {
-    type: String,
-    required: true
+  isVeg: {
+    type: Boolean,
+    required: true,
+    default: true
   },
   ratings: {
     type: Number
   },
   orders: {
     type: Array
-  },
-  gst: {},
-  fssai: {
-    licenceNumber: {
-      type: String,
-      required: true
-    },
-    registeredName: {
-      type: String,
-      required: true
-    },
-    address: {
-      type: String,
-      required: true
-    },
-    expiryDate: {
-      type: String,
-      required: true
-    },
-    certificateFile: {}
   },
   registeredOn: {
     type: Date,
