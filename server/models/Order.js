@@ -53,7 +53,7 @@ const orderSchema = new mogoose.Schema({
       required: true,
       default: false
     },
-    isDeliverd: {
+    isDelivered: {
       type: Boolean,
       required: true,
       default: false
