@@ -27,6 +27,16 @@ const deliveryGuySchema = new mogoose.Schema({
   recieveOrders: {
     type: Array
   },
+  earnings: {},
+  incentives: {},
+  adjustments: {}, // flating cash me se adjustment
+  floatingCash: {}, // cash deposit to swiggy of orders
+  isOnDuty: {
+    type: Boolean,
+    required: true,
+    default: false
+  }, 
+  loginHistory: {}, // login inside the app for orders or onduty
   ratings: {
     type: Number
   },
