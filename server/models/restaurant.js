@@ -67,7 +67,7 @@ const restaurantSchema = new mongoose.Schema({
         required: false,
         default: ''
       },
-      vegOrNonVeg: {
+      isVeg: {
         type: String,
         required: true
       },
@@ -82,7 +82,7 @@ const restaurantSchema = new mongoose.Schema({
       }
     }]
   }],
-  isVeg: {
+  isRestaurantVeg: {
     type: Boolean,
     required: true,
     default: true
