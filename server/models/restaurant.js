@@ -4,7 +4,7 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  owner: [{
+  owner: {
     name: {
       type: String,
       required: true
@@ -19,10 +19,6 @@ const restaurantSchema = new mongoose.Schema({
       required: true,
       unique: true
     }
-  }],
-  postalCode: {
-    type: String,
-    required: true
   },
   pocDesignation: { // point of contact (poc) manger or owner to swiggy
     type: String,
@@ -91,18 +87,10 @@ const restaurantSchema = new mongoose.Schema({
     required: true,
     default: true
   },
-  ratings: {},
+  rating: {},
   orders: {
     type: Array
   },
-  receivedOrders: {}, // live order their should not be mark unavailable instead mark -> out of stock option availbale and provide alternate option (you can alternate option item)
-  preparingOrders: {},
-  pendingOrders: {},
-  cancelOrders: {},
-  readyOrders: {}, // food is cooked or prepared or markfood ready
-  pickedUpOrders: {}, // food is picked by deliveryPartner
-  trakingOrders: {}, // tracking the deliveryPartner to customer or riderstatus option ongoingOrder
-  deliveredOrders: {}, // food order is delivered to customer
   registeredOn: {
     type: Date,
     default: Date.now,
