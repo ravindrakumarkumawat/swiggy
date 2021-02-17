@@ -26,6 +26,9 @@ const feedbackSchema = new mogoose.Schema({
     required: false
   }
 })
-module.exports = Feedback = mongoose.model("feedback", feedbackSchema)
+
+const Feedback = mongoose.model("feedback", feedbackSchema)
+
+module.exports = Feedback
 
 // cutomer can give rating based on order

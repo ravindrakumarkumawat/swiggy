@@ -97,4 +97,6 @@ const restaurantSchema = new mongoose.Schema({
   },
 })
 
-module.exports = Restaurant = mongoose.model("restaurant", restaurantSchema)
+const Restaurant = mongoose.model("restaurant", restaurantSchema)
+
+module.exports = Restaurant 

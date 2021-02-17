@@ -46,4 +46,6 @@ const deliveryPartnerSchema = new mogoose.Schema({
   }
 })
 
-module.exports = DeliveryPartner = mongoose.model("deliveryPartner", deliveryPartnerSchema)
+const DeliveryPartner = mongoose.model("deliveryPartner", deliveryPartnerSchema)
+
+module.exports = DeliveryPartner

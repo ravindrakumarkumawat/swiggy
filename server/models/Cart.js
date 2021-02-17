@@ -8,4 +8,6 @@ const cartSchema = new mogoose.Schema({
   ]
 })
 
-module.exports = Cart = mongoose.model("cart", cartSchema)
+const Cart = mongoose.model("cart", cartSchema)
+
+module.exports = Cart
