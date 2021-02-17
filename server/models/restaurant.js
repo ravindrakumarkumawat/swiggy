@@ -75,7 +75,7 @@ const restaurantSchema = new mongoose.Schema({
         type: String
       },
       offers: {},
-      availability: { // food available to deliver
+      isStock: { // food available to deliver
         type: Boolean,
         required: true,
         default: true
