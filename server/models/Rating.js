@@ -2,13 +2,22 @@ const mongoose, { ObjectId } = require("mongoose")
 const ratingSchema = new mogoose.Schema({
   orderId: {
     type: ObjectId,
-    required: true
+    required: true,
+    ref: 'Order'
   },
-  restaurant: {
-    type: ObjectId
+  restaurantId: {
+    type: ObjectId,    
+    ref: 'Restaurant'
   },
-  deliveryGuy: {
-    type: ObjectId
+  deliveryGuyId: {
+    type: ObjectId,
+    ref: 'DeliveryGuy'
+  },
+  customerId: {
+    type: ObjectId,    
+    ref: 'Customer'
   }
 })
 module.exports = Rating = mongoose.model("order", ratingSchema)
+
+// cutomer can give rating based on order

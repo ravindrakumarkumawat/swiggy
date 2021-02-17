@@ -78,7 +78,12 @@ const restaurantSchema = new mongoose.Schema({
       image: {
         type: String
       },
-      offers: {}
+      offers: {},
+      availability: { // food available to deliver
+        type: Boolean,
+        required: true,
+        default: true
+      }
     }]
   }],
   isVeg: {
@@ -92,6 +97,12 @@ const restaurantSchema = new mongoose.Schema({
   orders: {
     type: Array
   },
+  receiveOrders: {}, // live order their should be -> out of stock option availbale
+  preparingOrders: {},
+  pendingOrders: {},
+  cancelOrders: {},
+  readyOrders: {}, // food is cooked or prepared or markfood ready
+  trakingOrders: {}, // tracking the deliveryPartner to customer or riderstatus option ongoingOrder
   registeredOn: {
     type: Date,
     default: Date.now,

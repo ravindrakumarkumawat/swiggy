@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const deliveryGuySchema = new mogoose.Schema({
+const deliveryPartnerSchema = new mogoose.Schema({
   name: {
     type: String,
     required: true
@@ -29,7 +29,7 @@ const deliveryGuySchema = new mogoose.Schema({
   },
   earnings: {},
   incentives: {},
-  adjustments: {}, // flating cash me se adjustment
+  adjustments: {}, // floting cash me se adjustment
   floatingCash: {}, // cash deposit to swiggy of orders
   isOnDuty: {
     type: Boolean,
@@ -37,6 +37,8 @@ const deliveryGuySchema = new mogoose.Schema({
     default: false
   }, 
   loginHistory: {}, // login inside the app for orders or onduty
+  firstMile: {}, // Distance between deliveryGuy to Restaurant
+  lastMile: {}, // Distance between deliveryGuy to customer
   ratings: {
     type: Number
   },
@@ -46,4 +48,4 @@ const deliveryGuySchema = new mogoose.Schema({
   }
 })
 
-module.exports = DeliveryGuy = mongoose.model("deliveryGuy", deliveryGuySchema)
+module.exports = DeliveryPartner = mongoose.model("deliveryPartner", deliveryPartnerSchema)
