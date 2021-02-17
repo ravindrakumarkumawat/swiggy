@@ -16,6 +16,10 @@ const ratingSchema = new mogoose.Schema({
   customerId: {
     type: ObjectId,    
     ref: 'Customer'
+  }, 
+  feedback: {
+    type: String,
+    required: false
   }
 })
 module.exports = Rating = mongoose.model("order", ratingSchema)

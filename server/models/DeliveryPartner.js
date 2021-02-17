@@ -39,9 +39,7 @@ const deliveryPartnerSchema = new mogoose.Schema({
   loginHistory: {}, // login inside the app for orders or onduty
   firstMile: {}, // Distance between deliveryGuy to Restaurant
   lastMile: {}, // Distance between deliveryGuy to customer
-  ratings: {
-    type: Number
-  },
+  ratings: {},
   registeredOn: {
     type: Date,
     default: Date.now

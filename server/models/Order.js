@@ -12,6 +12,10 @@ const orderSchema = new mogoose.Schema({
     type: Number,
     required: true
   },
+  request: { // request regarding food by customer
+    type: String,
+    required: false
+  },
   restaurantId: {
     type: ObjectId,
     ref: 'Restaurant'
