@@ -1,4 +1,6 @@
-const mongoose, { ObjectId } = require("mongoose")
+const mongoose = require("mongoose")
+const ObjectId = mongoose.Types.ObjectId
+
 const orderSchema = new mogoose.Schema({
   name: {
     type: String,
