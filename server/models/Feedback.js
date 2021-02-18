@@ -1,34 +1,35 @@
-const mongoose, { ObjectId } = require("mongoose")
-const feedbackSchema = new mogoose.Schema({
+const mongoose,
+  { ObjectId } = require("mongoose");
+const feedbackSchema = new mongoose.Schema({
   orderId: {
     type: ObjectId,
     required: true,
-    ref: 'Order'
+    ref: "Order",
   },
   restaurantId: {
-    type: ObjectId,    
-    ref: 'Restaurant'
+    type: ObjectId,
+    ref: "Restaurant",
   },
   deliveryGuyId: {
     type: ObjectId,
-    ref: 'DeliveryGuy'
+    ref: "DeliveryGuy",
   },
   customerId: {
-    type: ObjectId,    
-    ref: 'Customer'
-  }, 
+    type: ObjectId,
+    ref: "Customer",
+  },
   comment: {
     type: String,
-    required: false
+    required: false,
   },
   rating: {
     type: Number,
-    required: false
-  }
-})
+    required: false,
+  },
+});
 
-const Feedback = mongoose.model("feedback", feedbackSchema)
+const Feedback = mongoose.model("feedback", feedbackSchema);
 
-module.exports = Feedback
+module.exports = Feedback;
 
 // cutomer can give rating based on order

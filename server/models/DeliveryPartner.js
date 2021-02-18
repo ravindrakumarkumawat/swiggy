@@ -1,31 +1,31 @@
-const mongoose = require("mongoose")
-const deliveryPartnerSchema = new mogoose.Schema({
+const mongoose = require("mongoose");
+const deliveryPartnerSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   serviceArea: {
     type: String,
-    required: true
+    required: true,
   },
   city: {
     type: String,
-    required: true
+    required: true,
   },
   vehical: {
     type: String,
-    required: true
+    required: true,
   },
   referralCode: {
     type: Number,
     required: true,
-    unique: true
+    unique: true,
   },
   deliverOrders: {
-    type: Array
+    type: Array,
   },
   recieveOrders: {
-    type: Array
+    type: Array,
   },
   earnings: {},
   incentives: {},
@@ -34,18 +34,21 @@ const deliveryPartnerSchema = new mogoose.Schema({
   isOnDuty: {
     type: Boolean,
     required: true,
-    default: false
-  }, 
+    default: false,
+  },
   loginHistory: {}, // login inside the app for orders or onduty
   firstMile: {}, // Distance between deliveryGuy to Restaurant
   lastMile: {}, // Distance between deliveryGuy to customer
   ratings: {},
   registeredOn: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-const DeliveryPartner = mongoose.model("deliveryPartner", deliveryPartnerSchema)
+const DeliveryPartner = mongoose.model(
+  "deliveryPartner",
+  deliveryPartnerSchema
+);
 
-module.exports = DeliveryPartner
+module.exports = DeliveryPartner;

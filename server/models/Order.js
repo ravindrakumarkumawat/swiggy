@@ -1,81 +1,83 @@
-const mongoose = require("mongoose")
-const ObjectId = mongoose.Types.ObjectId
+const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 
-const orderSchema = new mogoose.Schema({
+const orderSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   price: {
     type: Number,
-    required: true
+    required: true,
   },
   quantity: {
     type: Number,
-    required: true
+    required: true,
   },
-  totalPrice: { // totalPrice = quantity * price
+  totalPrice: {
+    // totalPrice = quantity * price
     type: Number,
-    required: true
+    required: true,
   },
-  request: { // request regarding food by customer
+  request: {
+    // request regarding food by customer
     type: String,
-    required: false
+    required: false,
   },
   restaurantId: {
-    type: ObjectId
+    type: ObjectId,
   },
   customerId: {
-    type: ObjectId
+    type: ObjectId,
   },
   status: {
     isPlaced: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     isAccepted: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     isPrepared: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     isReady: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     isPickedUp: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     isPaid: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     isDelivered: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     isCanceled: {
       type: Boolean,
       required: true,
-      default: false
-    }
+      default: false,
+    },
   },
   orderedOn: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-const Order = mongoose.model("order", orderSchema)
+const Order = mongoose.model("order", orderSchema);
 
-module.exports = Order
+module.exports = Order;
