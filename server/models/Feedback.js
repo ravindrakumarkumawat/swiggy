@@ -1,5 +1,6 @@
-const mongoose,
-  { ObjectId } = require("mongoose");
+const mongoose = require("mongoose")
+const ObjectId = mongoose.Schema.Types.ObjectId;
+
 const feedbackSchema = new mongoose.Schema({
   orderId: {
     type: ObjectId,
