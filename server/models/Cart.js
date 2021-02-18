@@ -1,9 +1,12 @@
-const mongoose, { ObjectId } = require("mongoose")
+const mongoose = require("mongoose")
+const ObjectId = mongoose.Types.ObjectId
+
 const cartSchema = new mogoose.Schema({
-  customerId: {},
-  items: [{ 
-    orderId: {},
-    totalPrice: {},
+  orders: [{ 
+    orderId: {
+      type: ObjectId,
+      required: true
+    }
   } 
   ]
 })
