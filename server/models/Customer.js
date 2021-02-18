@@ -18,6 +18,25 @@ const customerSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  location: {
+    city: {
+      type: String
+    }, 
+    landmark: {
+      type: String
+    },   
+    address: {
+      type: String
+    },
+    coordinates: {
+      latitude: {
+        type: Number
+      },
+      longitude: {
+        type: Number
+      }
+    }
+  },
   orders: {
     type: Array
   },
