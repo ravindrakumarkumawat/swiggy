@@ -14,6 +14,10 @@ const orderSchema = new mogoose.Schema({
     type: Number,
     required: true
   },
+  totalPrice: { // totalPrice = quantity * price
+    type: Number,
+    required: true
+  },
   request: { // request regarding food by customer
     type: String,
     required: false
