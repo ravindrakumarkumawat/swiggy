@@ -24,7 +24,11 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  outlet: [{
+  outlet: [{   
+    address: {
+      type: String,
+      required: true,
+    },
     landmark: {
       type: String,
       required: true
@@ -32,10 +36,14 @@ const restaurantSchema = new mongoose.Schema({
     city: {
       type: String,
       required: true
-    },    
-    address: {
+    },
+    country:{
       type: String,
-      required: true,
+      required: true
+    }, 
+    postalCode: {
+      type: String,
+      required: true
     },
     coordinates: {
       latitude: {
