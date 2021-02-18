@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId
+
 const customerSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -18,7 +20,7 @@ const customerSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  location: {
+  locations: [{
     city: {
       type: String
     }, 
@@ -35,11 +37,18 @@ const customerSchema = new mongoose.Schema({
       longitude: {
         type: Number
       }
+    },
+    isSelected: {
+      type: Boolean,
+      required: true,
+      default: false
     }
-  },
-  orders: {
-    type: Array
-  },
+  }],
+  orders: [{
+    orderId: {
+      type: ObjectId
+    } 
+  }],
   registeredOn: {
     type: Date,
     default: Date.now
