@@ -37,11 +37,6 @@ const customerSchema = new mongoose.Schema({
       longitude: {
         type: Number
       }
-    },
-    isSelected: {
-      type: Boolean,
-      required: true,
-      default: false
     }
   }],
   orders: [{
