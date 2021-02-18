@@ -65,7 +65,11 @@ const orderSchema = new mogoose.Schema({
       required: true,
       default: false
     }
-  } 
+  },
+  orderedOn: {
+    type: Date,
+    default: Date.now
+  }
 })
 
 const Order = mongoose.model("order", orderSchema)
