@@ -1,7 +1,15 @@
 const mongoose = require("mongoose");
-const ObjectId = mongoose.Types.ObjectId;
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const cartSchema = new mongoose.Schema({
+  customerId: {
+    type: ObjectId,
+    required: true,
+  },
+  isCustomerAddress: {
+    type: Boolean,
+    required: true,
+  },
   orders: [
     {
       orderId: {
