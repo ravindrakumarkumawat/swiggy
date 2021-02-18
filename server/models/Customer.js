@@ -21,15 +21,21 @@ const customerSchema = new mongoose.Schema({
     unique: true,
   },
   locations: [
-    {
-      city: {
+    {  
+      address: {
         type: String,
       },
       landmark: {
         type: String,
       },
-      address: {
+      city: {
         type: String,
+      },
+      country:{
+        type: String
+      }, 
+      postalCode: {
+        type: String
       },
       coordinates: {
         latitude: {
@@ -37,9 +43,9 @@ const customerSchema = new mongoose.Schema({
         },
         longitude: {
           type: Number,
-        },
-      },
-    },
+        }
+      }
+    }
   ],
   orders: [
     {
