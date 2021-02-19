@@ -43,30 +43,9 @@ const restaurantSchema = new mongoose.Schema({
       required: true
     },
     items: [{
-      name: {
-        type: String,
-        required: true
-      },
-      price: {
-        type: Number,
-        required: true
-      },
-      description: {
-        type: String,
-        required: false,
-        default: ''
-      },
-      isVeg: {
-        type: String,
-        required: true
-      },
-      image: {
-        type: String
-      },
-      isStock: { // food available to deliver
-        type: Boolean,
-        required: true,
-        default: true
+      itemId: {
+        type: ObjectId,
+        ref: 'Item'
       }
     }]
   }],

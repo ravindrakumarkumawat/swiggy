@@ -18,10 +18,18 @@ const itemSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  isVeg: {
+    type: Boolean,
+    required: true,
+    default: true
+  },
   isInStock: {
     type: Boolean,
     required: true,
     default: true
+  },
+  images: {
+    type: Array
   },
   restaurant:{
     restaurantId: {
