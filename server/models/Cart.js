@@ -6,10 +6,6 @@ const cartSchema = new mongoose.Schema({
     type: ObjectId,
     required: true,
   },
-  isCustomerAddress: {
-    type: Boolean,
-    required: true,
-  },
   orders: [
     {
       orderId: {
