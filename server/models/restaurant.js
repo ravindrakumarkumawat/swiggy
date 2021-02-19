@@ -20,11 +20,11 @@ const restaurantSchema = new mongoose.Schema({
       type: Number,
       required: true,
       unique: true
+    },
+    pocDesignation: { // point of contact (poc) manger or owner to swiggy
+      type: String,
+      required: true
     }
-  },
-  pocDesignation: { // point of contact (poc) manger or owner to swiggy
-    type: String,
-    required: true
   },
   outlet: [{
     outletId: {
