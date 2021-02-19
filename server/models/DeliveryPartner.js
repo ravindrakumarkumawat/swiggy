@@ -18,14 +18,7 @@ const deliveryPartnerSchema = new mongoose.Schema({
   },
   referralCode: {
     type: Number,
-    required: true,
     unique: true,
-  },
-  deliverOrders: {
-    type: Array,
-  },
-  recieveOrders: {
-    type: Array,
   },
   earnings: {},
   incentives: {},
@@ -36,7 +29,15 @@ const deliveryPartnerSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
-  loginHistory: {}, // login inside the app for orders or onduty
+  loginHistory: [{
+    from: {
+      type: Date,
+      required: true
+    },
+    to: {
+      type: Date
+    }
+  }], // login inside the app for orders or onduty
   firstMile: {}, // Distance between deliveryGuy to Restaurant
   lastMile: {}, // Distance between deliveryGuy to customer
   ratings: {},
@@ -44,11 +45,6 @@ const deliveryPartnerSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-});
+})
 
-const DeliveryPartner = mongoose.model(
-  "deliveryPartner",
-  deliveryPartnerSchema
-);
-
-module.exports = DeliveryPartner;
+module.exports = mongoose.model("DeliveryPartner", deliveryPartnerSchema)
