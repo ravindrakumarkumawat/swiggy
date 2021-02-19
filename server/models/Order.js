@@ -26,41 +26,18 @@ const orderSchema = new mongoose.Schema({
   },
   restaurantId: {
     type: ObjectId,
+    required: true,
+    ref: 'Restaurant'
   },
   customerId: {
     type: ObjectId,
+    required: true,
+    ref: 'Customer'
   },
   deliveryAddress: {  
-    address: {
-      type: String,
-      required: true
-    },
-    landmark: {
-      type: String,
-      required: true
-    },
-    city: {
-      type: String,
-      required: true
-    },
-    country:{
-      type: String,
-      required: true
-    }, 
-    postalCode: {
-      type: String,
-      required: true
-    },
-    coordinates: {
-      latitude: {
-        type: Number,
-        required: true
-      },
-      longitude: {
-        type: Number,
-        required: true
-      }
-    }
+    type: ObjectId,
+    required: true,
+    ref: 'CustomerAddress'
   },
   status: {
     isPlaced: {

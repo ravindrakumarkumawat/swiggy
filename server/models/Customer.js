@@ -20,30 +20,10 @@ const customerSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  locations: [
-    {  
-      address: {
-        type: String,
-      },
-      landmark: {
-        type: String,
-      },
-      city: {
-        type: String,
-      },
-      country:{
-        type: String
-      }, 
-      postalCode: {
-        type: String
-      },
-      coordinates: {
-        latitude: {
-          type: Number,
-        },
-        longitude: {
-          type: Number,
-        }
+  locations: [{  
+      customerAddress: {
+        type: ObjectId,
+        ref: 'CustomerAddress'
       }
     }
   ],
@@ -58,8 +38,7 @@ const customerSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-});
+})
 
-const Customer = mongoose.model("customer", customerSchema);
-
-module.exports = Customer;
+module.exports = mongoose.model("Customer", customerSchema);
+;
