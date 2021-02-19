@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const ObjectId = mongoose.Schema.Types.ObjectId
+const { ObjectId } = mongoose.Schema.Types
 
 const itemSchema = new mongoose.Schema({
   name: {
@@ -29,7 +29,7 @@ const itemSchema = new mongoose.Schema({
       required: true,
       ref: 'Restaurant'
     },
-    outlet: {
+    outletId: {
       type: ObjectId,
       required: true,
       ref: 'Outlet'

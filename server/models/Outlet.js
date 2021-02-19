@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const ObjectId = mongoose.Schema.Types.ObjectId
+const { ObjectId } = mongoose.Schema.Types
 
 const outletSchema = new mongoose.Schema({   
   address: {
@@ -22,7 +22,7 @@ const outletSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  coordinates: {
+  coordinate: {
     latitude: {
       type: Number,
       required: true

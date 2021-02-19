@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const ObjectId = mongoose.Schema.Types.ObjectId;
+const { ObjectId } = mongoose.Schema.Types
 
 const feedbackSchema = new mongoose.Schema({
   orderId: {
@@ -13,7 +13,7 @@ const feedbackSchema = new mongoose.Schema({
   },
   deliveryGuyId: {
     type: ObjectId,
-    ref: "DeliveryGuy",
+    ref: "DeliveryPartner",
   },
   customerId: {
     type: ObjectId,
@@ -29,8 +29,8 @@ const feedbackSchema = new mongoose.Schema({
   },
 });
 
-const Feedback = mongoose.model("feedback", feedbackSchema);
+module.exports = mongoose.model("Feedback", feedbackSchema);
 
-module.exports = Feedback;
+
 
 // cutomer can give rating based on order

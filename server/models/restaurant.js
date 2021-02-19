@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const ObjectId = mongoose.Schema.Types.ObjectId
+const { ObjectId } = mongoose.Schema.Types
 
 const restaurantSchema = new mongoose.Schema({
   name: {
@@ -82,7 +82,7 @@ const restaurantSchema = new mongoose.Schema({
   registeredOn: {
     type: Date,
     default: Date.now,
-  },
+  }
 })
 
 module.exports = mongoose.model("Restaurant", restaurantSchema)
