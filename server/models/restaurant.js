@@ -1,4 +1,6 @@
 const mongoose = require("mongoose")
+const ObjectId = mongoose.Schema.Types.ObjectId
+
 const restaurantSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -24,37 +26,12 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  outlet: [{   
-    address: {
-      type: String,
+  outlet: [{
+    outletId: {
+      type: ObjectId,
       required: true,
-    },
-    landmark: {
-      type: String,
-      required: true
-    },
-    city: {
-      type: String,
-      required: true
-    },
-    country:{
-      type: String,
-      required: true
-    }, 
-    postalCode: {
-      type: String,
-      required: true
-    },
-    coordinates: {
-      latitude: {
-        type: Number,
-        required: true
-      },
-      longitude: {
-        type: Number,
-        required: true
-      }
-    }
+      ref: 'Outlet'
+    }   
   }],
   cuisines: {
     type: String,
@@ -109,6 +86,4 @@ const restaurantSchema = new mongoose.Schema({
   },
 })
 
-const Restaurant = mongoose.model("restaurant", restaurantSchema)
-
-module.exports = Restaurant 
+module.exports = mongoose.model("Restaurant", restaurantSchema)
