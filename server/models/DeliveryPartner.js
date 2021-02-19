@@ -12,7 +12,7 @@ const deliveryPartnerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  vehical: {
+  vehicle: {
     type: String,
     required: true,
   },
@@ -20,10 +20,18 @@ const deliveryPartnerSchema = new mongoose.Schema({
     type: Number,
     unique: true,
   },
-  earnings: {},
-  incentives: {},
-  adjustments: {}, // floting cash me se adjustment
-  floatingCash: {}, // cash deposit to swiggy of orders
+  earnings: {
+    type: Array
+  },
+  incentives: {
+    type: Array
+  },
+  adjustments: {
+    type: Array
+  }, // floting cash me se adjustment
+  floatingCash: {
+    type: Array
+  }, // cash deposit to swiggy of orders
   isOnDuty: {
     type: Boolean,
     required: true,
@@ -40,7 +48,7 @@ const deliveryPartnerSchema = new mongoose.Schema({
   }], // login inside the app for orders or onduty
   firstMile: {}, // Distance between deliveryGuy to Restaurant
   lastMile: {}, // Distance between deliveryGuy to customer
-  ratings: {},
+  rating: {},
   registeredOn: {
     type: Date,
     default: Date.now,
