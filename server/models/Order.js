@@ -34,6 +34,10 @@ const orderSchema = new mongoose.Schema({
     required: true,
     ref: 'Customer'
   },
+  deliveryPartnerId: {
+    type: ObjectId,
+    ref: 'DeliveryPartner'
+  },
   deliveryAddress: {  
     type: ObjectId,
     required: true,
@@ -49,6 +53,11 @@ const orderSchema = new mongoose.Schema({
       type: Boolean,
       required: true,
       default: false,
+    },
+    isAssigned: {
+      type: Boolean,
+      required: true,
+      default: false
     },
     isPrepared: {
       type: Boolean,
