@@ -3,26 +3,33 @@ const { ObjectId } = mongoose.Schema.Types
 
 const addressSchema = new mongoose.Schema({   
   address: {
-    type: String
+    type: String,
+    required: true,
   },
   landmark: {
-    type: String
+    type: String,
+    required: true
   },
   city: {
-    type: String
+    type: String,
+    required: true
   },
   country:{
-    type: String
+    type: String,
+    required: true
   }, 
   postalCode: {
-    type: String
+    type: String,
+    required: true
   },
-  coordinates: {
+  coordinate: {
     latitude: {
-      type: Number
+      type: Number,
+      required: true
     },
     longitude: {
-      type: Number
+      type: Number,
+      required: true
     }
   },
   customerId: {
