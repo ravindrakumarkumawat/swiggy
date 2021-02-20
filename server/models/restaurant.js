@@ -17,7 +17,7 @@ const restaurantSchema = new mongoose.Schema({
       unique: true
     },
     contact: {
-      type: Number,
+      type: String,
       required: true,
       unique: true
     },
