@@ -9,8 +9,12 @@ router.get('/:id', ()=>{
   console.log('Single restaurant')
 })
 
-router.post('/registerRestaurant', ()=>{
+router.post('/register', ()=>{
   console.log('Registering restaurant')
+})
+
+router.post('/login', ()=> {
+  console.log('Login restaurant')
 })
 
 router.put('/:id', ()=> {
