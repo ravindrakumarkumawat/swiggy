@@ -3,7 +3,8 @@ const { ObjectId } = mongoose.Schema.Types
 
 const itemSchema = new mongoose.Schema({
   category: {
-    type: "String"
+    type: String,
+    required: true
   },
   name: {
     type: String,
