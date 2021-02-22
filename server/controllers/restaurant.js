@@ -28,11 +28,11 @@ const getRestaurant = async (req, res) => {
   }
 }
 
-const deleteRestaurant = (req, res) => {
+const deleteRestaurant = async (req, res) => {
   try {
     const { id } = req.params
 
-    const del = await User.findOneAndDelete({ _id: id })
+    const del = await Restaurant.findOneAndDelete({ _id: id })
 
     if (!del) {
       return res.status(404).json({ error: "Restaurant not found" })
@@ -46,5 +46,6 @@ const deleteRestaurant = (req, res) => {
 
 module.exports = {
   getAllRestaurants,
-  getRestaurant
+  getRestaurant,
+  deleteRestaurant
 }

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { getAllRestaurants, getRestaurant} = require('../controllers/restaurant')
+const { getAllRestaurants, getRestaurant, deleteRestaurant} = require('../controllers/restaurant')
 
 router.get('/', getAllRestaurants)
 
@@ -19,8 +19,6 @@ router.put('/:id', ()=> {
   console.log('Updating something in restaurant')
 })
 
-router.delete('/:id', ()=> {
-  console.log('Deleting in restaurant')
-})
+router.delete('/:id', deleteRestaurant)
 
 module.exports = router
