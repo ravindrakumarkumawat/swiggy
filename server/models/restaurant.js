@@ -69,16 +69,8 @@ const restaurantSchema = new mongoose.Schema({
     required: true
   },
   menus: [{
-    categoryName: {
-      type: String,
-      required: false
-    },
-    items: [{
-      itemId: {
-        type: ObjectId,
-        ref: 'Item'
-      }
-    }]
+      type: ObjectId,
+      ref: 'Item'
   }],
   isRestaurantVeg: {
     type: Boolean,
