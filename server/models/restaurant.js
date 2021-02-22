@@ -81,9 +81,10 @@ const restaurantSchema = new mongoose.Schema({
     type: Number,
     required: false
   },
-  orders: {
-    type: Array
-  },
+  orders: [{
+    type: ObjectId,
+    ref: 'Order'
+}],
   registeredOn: {
     type: Date,
     default: Date.now,
