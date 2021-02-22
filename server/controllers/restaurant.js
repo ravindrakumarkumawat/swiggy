@@ -44,6 +44,22 @@ const deleteRestaurant = async (req, res) => {
   }
 }
 
+const registerRestaurant = async (req, res) => {
+  try {
+    
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+}
+
+const loginRestaurant = async (req, res) => {
+  try {
+    
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }  
+}
+
 module.exports = {
   getAllRestaurants,
   getRestaurant,
