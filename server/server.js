@@ -10,7 +10,7 @@ app.use(express.static(path.resolve(__dirname, '../client/build')))
 
 app.use(cors())
 
-app.get("/swiggy/api", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({message: 'This is swiggy backend'})
 })
 
