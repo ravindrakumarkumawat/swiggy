@@ -1,6 +1,39 @@
 const mongoose = require("mongoose")
 const { ObjectId } = mongoose.Schema.Types
 
+const outletSchema = new mongoose.Schema({   
+  address: {
+    type: String,
+    required: true,
+  },
+  landmark: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  country:{
+    type: String,
+    required: true
+  }, 
+  postalCode: {
+    type: String,
+    required: true
+  },
+  coordinate: {
+    latitude: {
+      type: String,
+      required: true
+    },
+    longitude: {
+      type: String,
+      required: true
+    }
+  }
+})
+
 const restaurantSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -26,13 +59,11 @@ const restaurantSchema = new mongoose.Schema({
       required: true
     }
   },
-  outlet: [{
-    outletId: {
-      type: ObjectId,
-      required: true,
-      ref: 'Outlet'
-    }   
-  }],
+  password: {
+    type: String,
+    required: true
+  },
+  outlet: [outletSchema],
   cuisines: {
     type: String,
     required: true
@@ -40,7 +71,7 @@ const restaurantSchema = new mongoose.Schema({
   menus: [{
     categoryName: {
       type: String,
-      required: true
+      required: false
     },
     items: [{
       itemId: {
@@ -54,7 +85,10 @@ const restaurantSchema = new mongoose.Schema({
     required: true,
     default: true
   },
-  rating: {},
+  rating: {
+    type: Number,
+    required: false
+  },
   orders: {
     type: Array
   },
