@@ -1,13 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/', ()=>{
-  console.log('All the restaurants')
-})
+const { getAllRestaurants, getRestaurant} = require('../controllers/restaurant')
 
-router.get('/:id', ()=>{
-  console.log('Single restaurant')
-})
+router.get('/', getAllRestaurants)
+
+router.get('/:id', getRestaurant)
 
 router.post('/register', ()=>{
   console.log('Registering restaurant')
