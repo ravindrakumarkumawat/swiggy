@@ -1,6 +1,6 @@
 const Restaurant = require('../models/Restaurant')
 const jwt = require('jsonwebtoken')
-
+const bcrypt = require('bcrypt')
 
 const getAllRestaurants = async (req, res) => {
   try {
@@ -73,9 +73,19 @@ const loginRestaurant = async (req, res) => {
       })
     }
 
-    const isMatch = 
+    const isMatch = await bcrypt.compare(password, restaurant.password)
+    if(!isMatch) {
+      return res.status(400).json({
+        message: 'Incorrect Password'
+      })
+    }
 
-    const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET)
+    const accessToken = jwt.sign({ id: restaurant._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
+    res.status(200).json({
+      accessToken,
+      restaurant
+    })
+    
   } catch (err) {
     res.status(500).json({ error: err.message })
   }  
