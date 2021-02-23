@@ -1,4 +1,4 @@
-require('dotenv').config()
+// require('dotenv').config()
 
 const Restaurant = require('../models/Restaurant')
 const jwt = require('jsonwebtoken')
@@ -98,12 +98,9 @@ const registerRestaurant = async (req, res) => {
     })
 
     const savedRestaurant = await newRestaurant.save()
-    const id = { id: savedRestaurant._id }
-    const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
-    res.status(201).json({
-      accessToken,
-      savedRestaurant
-    })
+    // const id = { id: savedRestaurant._id }
+    // const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
+    res.status(201).json(savedRestaurant)
 
   } catch (err) {
     res.status(500).json({ error: err.message })
