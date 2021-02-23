@@ -81,8 +81,9 @@ const loginRestaurant = async (req, res) => {
         message: 'Incorrect Password'
       })
     }
-
-    const accessToken = jwt.sign({ id: restaurant._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
+    
+    const id = { id: restaurant._id }
+    const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
     res.status(200).json({
       accessToken,
       restaurant
