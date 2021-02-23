@@ -1,4 +1,6 @@
 const Restaurant = require('../models/Restaurant')
+const jwt = require('jsonwebtoken')
+
 
 const getAllRestaurants = async (req, res) => {
   try {
@@ -54,7 +56,26 @@ const registerRestaurant = async (req, res) => {
 
 const loginRestaurant = async (req, res) => {
   try {
-    
+    // Authenticate restaurant
+
+    const { email, password } = req.body
+
+    if(!email || !password) {
+      return res.status(400).json({
+        message: !email? 'Enter register email' : !password ? 'Enter password' : 'Enter email and password'
+      })
+    }
+
+    const restaurant = Restaurant.find({ email })
+    if(!restaurant) {
+      return res.status(400).json({
+        message: 'Restaurant with this email is not registered'
+      })
+    }
+
+    const isMatch = 
+
+    const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET)
   } catch (err) {
     res.status(500).json({ error: err.message })
   }  
