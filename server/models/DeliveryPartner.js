@@ -14,6 +14,10 @@ const deliveryPartnerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  country: {
+    type: String,
+    required: true
+  },
   role: {
     type: String,
     default: ROLE.DELIVERY
@@ -22,9 +26,9 @@ const deliveryPartnerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  referralCode: {
-    type: Number,
-    unique: true,
+  orders: {
+    type: Array,
+    ref: 'Order'
   },
   earnings: {
     type: Array
@@ -43,18 +47,20 @@ const deliveryPartnerSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
-  loginHistory: [{
+  loginHistory: [{ // login inside the app for orders or onduty
     from: {
       type: Date,
-      required: true
+      required: true,
+      default: Date.now
     },
     to: {
       type: Date
     }
-  }], // login inside the app for orders or onduty
-  firstMile: {}, // Distance between deliveryGuy to Restaurant
-  lastMile: {}, // Distance between deliveryGuy to customer
-  rating: {},
+  }], // firstmile and last should also be included somewhere
+  rating: {
+    type: Number,
+    required: false
+  },
   registeredOn: {
     type: Date,
     default: Date.now,
