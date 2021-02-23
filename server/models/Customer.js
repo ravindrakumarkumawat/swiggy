@@ -43,7 +43,7 @@ const customerSchema = new mongoose.Schema({
     required: true
   },
   phone: {
-    type: Number,
+    type: String,
     required: true,
     unique: true
   },
@@ -51,7 +51,7 @@ const customerSchema = new mongoose.Schema({
     type: String,
     default: ROLE.CUSTOMER
   },
-  address: [addressSchema],
+  addresses: [addressSchema],
   orders: [{
     type: ObjectId,
     ref: 'Order'
