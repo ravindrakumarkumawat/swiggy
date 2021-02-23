@@ -1,9 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/', () => console.log('All the customer'))
-router.post('/', () => console.log('Add the customer'))
-router.put('/:id', () => console.log('Update the customer'))
-router.delete('/:id', () => console.log('Delete the customer'))
+const {
+  getAllCustomers,
+  addCustomer,
+  updateCustomer,
+  deleteCustomer
+} = require('../controllers/customer')
+
+router.get('/', getAllCustomers)
+router.post('/', addCustomer)
+router.put('/:id', updateCustomer)
+router.delete('/:id', deleteCustomer)
 
 module.exports = router

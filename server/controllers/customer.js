@@ -8,7 +8,7 @@ const getAllCustomers = async (req, res) => {
   }
 }
 
-const getCustomer = async (req, res) => {
+const addCustomer = async (req, res) => {
   try {
     
   } catch (err) {
@@ -35,7 +35,7 @@ const deleteCustomer = async (req, res) => {
 
 module.exports = {
   getAllCustomers,
-  getCustomer,
+  addCustomer,
   updateCustomer,
   deleteCustomer
 }
