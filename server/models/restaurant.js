@@ -38,8 +38,10 @@ const outletSchema = new mongoose.Schema({
 
 const restaurantSchema = new mongoose.Schema({
   name: {
+    trim: true,
     type: String,
     required: true,
+    unique: true
   },
   owner: {
     name: {
