@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const Restaurant = require('../models/Restaurant')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
@@ -85,7 +87,7 @@ const loginRestaurant = async (req, res) => {
       accessToken,
       restaurant
     })
-    
+
   } catch (err) {
     res.status(500).json({ error: err.message })
   }  
