@@ -4,6 +4,7 @@ const cors = require('cors')
 const { connectDB } = require('./db/connectDb')
 
 const restaurantRouter = require('./routes/restaurant')
+const customerRouter = require('./routes/customer')
 
 const app = express()
 
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/api/restaurant", restaurantRouter)
+app.use("/api/customer", customerRouter)
 
 app.get("/api", (req, res) => {
   res.json({message: 'This is swiggy backend'})
