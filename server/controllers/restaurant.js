@@ -74,7 +74,7 @@ const registerRestaurant = async (req, res) => {
     const newRestaurant = new Restaurant({
       name,
       owner: {
-        ownerName,
+        name: ownerName,
         email,
         contact, 
         pocDesignation,
