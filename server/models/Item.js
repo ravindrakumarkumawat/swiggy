@@ -40,11 +40,6 @@ const itemSchema = new mongoose.Schema({
       type: ObjectId,
       required: true,
       ref: 'Restaurant'
-    },
-    outletId: {
-      type: ObjectId,
-      required: true,
-      ref: 'Outlet'
     }
   },
   addedOn: {
