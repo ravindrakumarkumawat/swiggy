@@ -2,24 +2,22 @@ const express = require('express')
 const router = express.Router()
 const { authenticateToken } = require('../middlewares/authenticateToken')
 
-const { getAllRestaurants, getRestaurant, deleteRestaurant} = require('../controllers/restaurant')
+const { getAllRestaurants, getRestaurant, deleteRestaurant, registerRestaurant} = require('../controllers/restaurant')
 
-router.get('/', authenticateToken, getAllRestaurants)
+router.get('/', getAllRestaurants)
 
-router.get('/:id', authenticateToken, getRestaurant)
+router.get('/:id', getRestaurant)
 
-router.post('/register', ()=>{
-  console.log('Registering restaurant')
-})
+router.post('/register', registerRestaurant)
 
 router.post('/login', ()=> {
   console.log('Login restaurant')
 })
 
-router.put('/:id',authenticateToken,  ()=> {
+router.put('/:id', ()=> {
   console.log('Updating something in restaurant')
 })
 
-router.delete('/:id', authenticateToken, deleteRestaurant)
+router.delete('/:id', deleteRestaurant)
 
 module.exports = router

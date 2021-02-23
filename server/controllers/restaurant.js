@@ -50,7 +50,61 @@ const deleteRestaurant = async (req, res) => {
 
 const registerRestaurant = async (req, res) => {
   try {
-    
+    const { 
+      name, 
+      ownerName, 
+      email,  
+      password, 
+      contact, 
+      pocDesignation, 
+      address, 
+      landmark, 
+      city, 
+      country, 
+      postalCode, 
+      latitude, 
+      longitude,
+      cuisines, 
+      isRestaurantVeg
+    } = req.body
+
+    const salt = await bcrypt.genSalt()
+    const passwordHash = await bcrypt.hash(password, salt)
+
+    const newRestaurant = new Restaurant({
+      name,
+      owner: {
+        ownerName,
+        email,
+        contact, 
+        pocDesignation,
+        password: passwordHash
+      },
+      cuisines,
+      outlet: [
+        {
+          address,
+          landmark,
+          city,
+          country,
+          postalCode,
+          coordinate: {
+            latitude,
+            longitude
+          }
+        }
+      ],
+      isRestaurantVeg
+    })
+
+    const savedRestaurant = await newRestaurant.save()
+    const id = { id: savedRestaurant._id }
+    const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
+    res.status(201).json({
+      accessToken,
+      savedRestaurant
+    })
+
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
@@ -97,5 +151,6 @@ const loginRestaurant = async (req, res) => {
 module.exports = {
   getAllRestaurants,
   getRestaurant,
-  deleteRestaurant
+  deleteRestaurant,
+  registerRestaurant
 }
