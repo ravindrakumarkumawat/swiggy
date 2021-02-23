@@ -20,6 +20,10 @@ const customerSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  role: {
+    type: String,
+    default: "customer"
+  },
   locations: [{  
       customerAddress: {
         type: ObjectId,

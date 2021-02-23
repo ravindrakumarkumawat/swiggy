@@ -13,6 +13,10 @@ const deliveryPartnerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    default: "delivery"
+  },
   vehicle: {
     type: String,
     required: true,

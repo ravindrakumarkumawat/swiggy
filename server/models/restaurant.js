@@ -63,6 +63,10 @@ const restaurantSchema = new mongoose.Schema({
       required: true
     }
   },
+  role: {
+    type: String,
+    default: "restaurant"
+  },
   outlet: [outletSchema],
   cuisines: {
     type: String,
