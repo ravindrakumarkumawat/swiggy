@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const { ROLE } = require("./Role")
 const { ObjectId } = mongoose.Schema.Types
 
 const customerSchema = new mongoose.Schema({
@@ -22,7 +23,7 @@ const customerSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    default: "customer"
+    default: ROLE.CUSTOMER
   },
   locations: [{  
       customerAddress: {

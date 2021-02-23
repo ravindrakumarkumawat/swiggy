@@ -1,5 +1,7 @@
 const mongoose = require("mongoose")
+const { ROLE } = require("./Role")
 const { ObjectId } = mongoose.Schema.Types
+
 
 const outletSchema = new mongoose.Schema({   
   address: {
@@ -65,7 +67,7 @@ const restaurantSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    default: "restaurant"
+    default: ROLE.RESTAURANT
   },
   outlet: [outletSchema],
   cuisines: {

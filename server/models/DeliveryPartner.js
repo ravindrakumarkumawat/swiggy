@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const { ROLE } = require("./Role")
 
 const deliveryPartnerSchema = new mongoose.Schema({
   name: {
@@ -15,7 +16,7 @@ const deliveryPartnerSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    default: "delivery"
+    default: ROLE.DELIVERY
   },
   vehicle: {
     type: String,
