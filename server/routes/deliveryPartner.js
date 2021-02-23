@@ -1,9 +1,15 @@
 const express = require('express')
 const router = express.Router()
+const {
+  getAllDeliveryPartners,
+  addDeliveryPartner,
+  updateDeliveryPartner,
+  deleteDeliveryPartner
+} = require('../controllers/deliveryPartner')
 
-router.get('/', () => console.log('All the DeliveryPartner'))
-router.post('/', () => console.log('Add the DeliveryPartner'))
-router.put('/:id', () => console.log('Update the DeliveryPartner'))
-router.delete('/:id', () => console.log('Delete the DeliveryPartner'))
+router.get('/', getAllDeliveryPartners)
+router.post('/', addDeliveryPartner)
+router.put('/:id', updateDeliveryPartner)
+router.delete('/:id', deleteDeliveryPartner)
 
 module.exports = router

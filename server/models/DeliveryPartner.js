@@ -6,6 +6,14 @@ const deliveryPartnerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
   serviceArea: {
     type: String,
     required: true,
@@ -49,9 +57,7 @@ const deliveryPartnerSchema = new mongoose.Schema({
   },
   loginHistory: [{ // login inside the app for orders or onduty
     from: {
-      type: Date,
-      required: true,
-      default: Date.now
+      type: Date
     },
     to: {
       type: Date
