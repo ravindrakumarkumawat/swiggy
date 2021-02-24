@@ -36,12 +36,10 @@ const itemSchema = new mongoose.Schema({
   images: {
     type: Array
   },
-  restaurant:{
-    restaurantId: {
-      type: ObjectId,
-      required: true,
-      ref: 'Restaurant'
-    }
+  restaurantId: {
+    type: ObjectId,
+    required: true,
+    ref: 'Restaurant'
   },
   addedOn: {
     type: Date,
