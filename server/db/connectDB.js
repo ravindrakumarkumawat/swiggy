@@ -1,11 +1,12 @@
-// require("dotenv").config()
+const path = require('path')
 const mongoose = require("mongoose")
+require("dotenv").config({ path: path.resolve(__dirname, '../.env') })
 
-// const URI = process.env.MONGODB_CONNECTION_STRING
+const URI = process.env.MONGODB_CONNECTION_STRING
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://swiggy:ppF3mYVDhdAMEua4@cluster0.ay866.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+    await mongoose.connect(URI, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
       useCreateIndex: true,
