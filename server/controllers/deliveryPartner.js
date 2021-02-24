@@ -21,7 +21,8 @@ const addDeliveryPartner = async (req, res) => {
       country,
       vehicle,
       email,
-      password
+      password,
+      phone
     } = req.body
 
     const salt = await bcrypt.genSalt()
@@ -34,6 +35,7 @@ const addDeliveryPartner = async (req, res) => {
       country,
       vehicle,
       email,
+      phone,
       password: passwordHash
     })
 
