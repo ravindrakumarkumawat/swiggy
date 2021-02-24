@@ -1,7 +1,10 @@
 const path = require('path')
 require("dotenv").config({ path: path.resolve(__dirname, '../.env') })
+const mongoose = require('mongoose')
+const { ObjectId } = mongoose.Schema.Types
 
 const Restaurant = require('../models/Restaurant')
+const Item = require('../models/Item')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
@@ -146,7 +149,10 @@ const loginRestaurant = async (req, res) => {
 
 const getAllItems = async (req, res) => {
   try {
-    res.send(200).json({message: 'All items'})
+    const { id } = req.params
+    const items = await Item.find({ restaurantId: id })
+
+    res.status(200).json(items)
 
   } catch (err) {
     res.status(500).json({error: err.message})
@@ -155,7 +161,25 @@ const getAllItems = async (req, res) => {
 
 const addItem = async (req, res) => {
   try {
-    res.send(200).json({message: 'add item'})
+    const { id } = req.params
+    const {
+      category, 
+      name,
+      price,
+      description,
+      quantity    
+    } = req.body
+
+    const newItem = await Item.create({
+      category, 
+      name,
+      price,
+      description,
+      quantity,
+      restaurantId: mongoose.Types.ObjectId(id) 
+    })
+    
+    res.status(201).json(newItem)
 
   } catch (err) {
     res.status(500).json({error: err.message})
@@ -164,7 +188,7 @@ const addItem = async (req, res) => {
 
 const updateItem = async (req, res) => {
   try {
-    res.send(200).json({message: 'update item'})
+    res.status(200).json({message: 'update item'})
 
   } catch (err) {
     res.status(500).json({error: err.message})
@@ -173,7 +197,7 @@ const updateItem = async (req, res) => {
 
 const deleteItem = async (req, res) => {
   try {
-    res.send(200).json({message: 'delete item'})
+    res.status(200).json({message: 'delete item'})
 
   } catch (err) {
     res.status(500).json({error: err.message})
