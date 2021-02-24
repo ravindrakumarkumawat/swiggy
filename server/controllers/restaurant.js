@@ -56,7 +56,7 @@ const registerRestaurant = async (req, res) => {
       ownerName, 
       email,  
       password, 
-      contact, 
+      phone, 
       pocDesignation, 
       address, 
       landmark, 
@@ -74,34 +74,32 @@ const registerRestaurant = async (req, res) => {
 
     const newRestaurant = new Restaurant({
       name,
-      owner: {
-        name: ownerName,
-        email,
-        contact, 
-        pocDesignation,
-        password: passwordHash
-      },
+      ownername: ownerName,
+      email,
+      phone, 
+      pocDesignation,
+      password: passwordHash,
       cuisines,
-      outlet: [
-        {
-          address,
-          landmark,
-          city,
-          country,
-          postalCode,
-          coordinate: {
-            latitude,
-            longitude
-          }
+      outlet: {
+        address,
+        landmark,
+        city,
+        country,
+        postalCode,
+        coordinate: {
+          latitude,
+          longitude
         }
-      ],
+      },
       isRestaurantVeg
     })
 
     const savedRestaurant = await newRestaurant.save()
-    const id = { id: savedRestaurant._id }
-    const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
-    res.status(201).json({ accessToken, savedRestaurant })
+
+    // const id = { id: savedRestaurant._id }
+    // const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
+
+    res.status(201).json(savedRestaurant)
 
   } catch (err) {
     res.status(500).json({ error: err.message })
