@@ -144,9 +144,49 @@ const loginRestaurant = async (req, res) => {
   }  
 }
 
+const getAllItems = async (req, res) => {
+  try {
+    res.send(200).json({message: 'All items'})
+
+  } catch (err) {
+    res.status(500).json({error: err.message})
+  }
+}
+
+const addItem = async (req, res) => {
+  try {
+    res.send(200).json({message: 'add item'})
+
+  } catch (err) {
+    res.status(500).json({error: err.message})
+  }
+}
+
+const updateItem = async (req, res) => {
+  try {
+    res.send(200).json({message: 'update item'})
+
+  } catch (err) {
+    res.status(500).json({error: err.message})
+  }
+}
+
+const deleteItem = async (req, res) => {
+  try {
+    res.send(200).json({message: 'delete item'})
+
+  } catch (err) {
+    res.status(500).json({error: err.message})
+  }
+}
+
 module.exports = {
   getAllRestaurants,
   getRestaurant,
   deleteRestaurant,
-  registerRestaurant
+  registerRestaurant,
+  getAllItems,
+  addItem,
+  updateItem,
+  deleteItem
 }

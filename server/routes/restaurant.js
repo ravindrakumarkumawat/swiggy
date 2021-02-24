@@ -2,7 +2,16 @@ const express = require('express')
 const router = express.Router()
 const { authenticateToken } = require('../middlewares/authenticateToken')
 
-const { getAllRestaurants, getRestaurant, deleteRestaurant, registerRestaurant} = require('../controllers/restaurant')
+const {
+  getAllRestaurants,
+  getRestaurant,
+  deleteRestaurant,
+  registerRestaurant,
+  getAllItems,
+  addItem,
+  updateItem,
+  deleteItem
+} = require('../controllers/restaurant')
 
 router.get('/', getAllRestaurants)
 
@@ -19,5 +28,10 @@ router.put('/:id', ()=> {
 })
 
 router.delete('/:id', deleteRestaurant)
+
+router.get('/:id/item', getAllItems)
+router.post('/:id/item', addItem)
+router.put('/:id/item/:itemId', updateItem)
+router.delete('/:id/item/:itemId', deleteItem)
 
 module.exports = router
