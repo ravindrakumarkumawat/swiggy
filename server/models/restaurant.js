@@ -40,38 +40,40 @@ const restaurantSchema = new mongoose.Schema({
   name: {
     trim: true,
     type: String,
+    required: true
+  },
+  ownername: {
+    type: String,
+    required: true
+  },
+  email: {
+    trim: true,
+    type: String,
     required: true,
     unique: true
   },
-  owner: {
-    name: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    contact: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    pocDesignation: { // point of contact (poc) manger or owner to swiggy
-      type: String,
-      required: true
-    },
-    password: {
-      type: String,
-      required: true
-    }
+  phone: {
+    trim: true,
+    type: String,
+    required: true,
+    unique: true
+  },
+  pocDesignation: { // point of contact (poc) manger or owner to swiggy
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
   },
   role: {
     type: String,
     default: ROLE.RESTAURANT
   },
-  outlet: [outletSchema],
+  outlet: {
+    type: outletSchema,
+    required: true
+  },
   cuisines: {
     type: String,
     required: true
