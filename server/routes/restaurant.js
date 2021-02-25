@@ -31,7 +31,7 @@ router.delete('/:id', deleteRestaurant)
 
 router.get('/:id/item', getAllItems)
 router.post('/:id/item', addItem)
-router.put('/:id/item/:itemId', updateItem)
+router.patch('/:id/item/:itemId', updateItem)
 router.delete('/:id/item/:itemId', deleteItem)
 
 module.exports = router

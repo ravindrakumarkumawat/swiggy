@@ -188,7 +188,11 @@ const addItem = async (req, res) => {
 
 const updateItem = async (req, res) => {
   try {
-    res.status(200).json({message: 'update item'})
+    const { id, itemId } = req.params
+    const update = req.body
+
+    const item = await Item.findOneAndUpdate({_id: itemId, restaurantId: id}, update, {new: true})
+    res.status(200).json(item)
 
   } catch (err) {
     res.status(500).json({error: err.message})
