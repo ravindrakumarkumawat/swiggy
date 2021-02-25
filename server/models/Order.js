@@ -58,7 +58,7 @@ const orderSchema = new mongoose.Schema({
     isPlaced: {
       type: Boolean,
       required: true,
-      default: false,
+      default: true,
     },
     isAccepted: {
       type: Boolean,
