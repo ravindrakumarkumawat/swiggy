@@ -82,15 +82,37 @@ const addOrder = async (req, res) => {
   try {
     const { id } = req.params
 
-    const {cart, request, totalPrice, restaurantId, deliveryAddress } = req.body
-   
+    const {
+      cart, 
+      request, 
+      totalPrice, 
+      restaurantId, 
+      address,
+      landmark,
+      city,
+      country,
+      postalCode,
+      latitude,
+      longitude 
+    } = req.body
+
     const createOrder = await Order.create({ 
       cart,
       request,
       totalPrice,
       restaurantId: mongoose.Types.ObjectId(restaurantId),
       customerId: mongoose.Types.ObjectId(id),
-      deliveryAddress
+      deliveryAddress: {
+        address,
+        landmark,
+        city,
+        country,
+        postalCode,
+        coordinate: {
+          latitude,
+          longitude
+        }
+      }
     })
 
 

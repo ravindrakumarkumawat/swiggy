@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const { ObjectId } = mongoose.Schema.Types
+const addressSchema = require('./AddressSchema')
 
 const cartItemSchema = new mongoose.Schema({
   name: {
@@ -19,6 +20,7 @@ const cartItemSchema = new mongoose.Schema({
     required: true
   }
 })
+
 
 const orderSchema = new mongoose.Schema({
   cart: [{ 
@@ -49,7 +51,7 @@ const orderSchema = new mongoose.Schema({
     ref: 'DeliveryPartner'
   },
   deliveryAddress: {  
-    type: String,
+    type: addressSchema,
     required: true
   },
   status: {
