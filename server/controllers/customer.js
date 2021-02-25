@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Customer = require('../models/Customer')
+const Restaurant = require('../models/Restaurant')
 const Order = require('../models/Order')
 const bcrypt = require('bcrypt')
 
@@ -96,6 +97,12 @@ const addOrder = async (req, res) => {
       longitude 
     } = req.body
 
+    const restaurant = await Restaurant.findOne({_id: restaurantId})
+
+    if(!restaurant) {
+      return res.status(404).json({ error: "Restaurant does not exist"})
+    }
+
     const createOrder = await Order.create({ 
       cart,
       request,
@@ -115,6 +122,8 @@ const addOrder = async (req, res) => {
       }
     })
 
+    restaurant.orders.push(createOrder._id)
+    await restaurant.save()
 
     res.status(201).json(createOrder)
   } catch (err) {
