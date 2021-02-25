@@ -1,3 +1,4 @@
+const mongoose = require('mongoose')
 const Customer = require('../models/Customer')
 const Order = require('../models/Order')
 const bcrypt = require('bcrypt')
@@ -81,9 +82,19 @@ const addOrder = async (req, res) => {
   try {
     const { id } = req.params
 
-    const order = req.body
+    const {cart, request, totalPrice, restaurantId, deliveryAddress } = req.body
+   
+    const createOrder = await Order.create({ 
+      cart,
+      request,
+      totalPrice,
+      restaurantId: mongoose.Types.ObjectId(restaurantId),
+      customerId: mongoose.Types.ObjectId(id),
+      deliveryAddress
+    })
 
-    res.status(201).json(order)
+
+    res.status(201).json(createOrder)
   } catch (err) {
     res.status(500).json({ error: err.message })
   }

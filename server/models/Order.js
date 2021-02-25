@@ -1,23 +1,33 @@
 const mongoose = require("mongoose")
 const { ObjectId } = mongoose.Schema.Types
 
-const orderSchema = new mongoose.Schema({
+const cartItemSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   price: {
     type: Number,
-    required: true,
+    required: true
   },
   quantity: {
     type: Number,
-    required: true,
+    required: true
   },
-  totalPrice: {
-    // totalPrice = quantity * price
+  total: {
     type: Number,
-    required: true,
+    required: true
+  }
+})
+
+const orderSchema = new mongoose.Schema({
+  cart: [{ 
+    type: cartItemSchema,
+    required: true
+  }],
+  totalPrice: {
+    type: Number,
+    required: true
   },
   request: {
     // request regarding food by customer
@@ -39,9 +49,8 @@ const orderSchema = new mongoose.Schema({
     ref: 'DeliveryPartner'
   },
   deliveryAddress: {  
-    type: ObjectId,
-    required: true,
-    ref: 'CustomerAddress'
+    type: String,
+    required: true
   },
   status: {
     isPlaced: {
