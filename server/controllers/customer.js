@@ -1,4 +1,5 @@
 const Customer = require('../models/Customer')
+const Order = require('../models/Order')
 const bcrypt = require('bcrypt')
 
 const getAllCustomers = async (req, res) => {
@@ -64,9 +65,35 @@ const deleteCustomer = async (req, res) => {
   }
 }
 
+const getAllOrders = async (req, res) => {
+  try {
+    const { id } = req.params
+    const orders = await Order.find({ customerId: id})
+    
+    res.status(200).json(orders)
+
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+}
+
+const addOrder = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const order = req.body
+
+    res.status(201).json(order)
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+}
+
 module.exports = {
   getAllCustomers,
   addCustomer,
   updateCustomer,
-  deleteCustomer
+  deleteCustomer,
+  getAllOrders,
+  addOrder
 }
