@@ -1,5 +1,5 @@
-const mongoose = require("mongoose")
-const { ROLE } = require("./Role")
+const mongoose = require("mongoose");
+const { ROLE } = require("../utils/Role");
 
 const deliveryPartnerSchema = new mongoose.Schema({
   name: {
@@ -9,12 +9,12 @@ const deliveryPartnerSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   phone: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
@@ -30,11 +30,11 @@ const deliveryPartnerSchema = new mongoose.Schema({
   },
   country: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
-    default: ROLE.DELIVERY
+    default: ROLE.DELIVERY,
   },
   vehicle: {
     type: String,
@@ -42,41 +42,44 @@ const deliveryPartnerSchema = new mongoose.Schema({
   },
   orders: {
     type: Array,
-    ref: 'Order'
+    ref: "Order",
   },
   earnings: {
-    type: Array
+    type: Array,
   },
   incentives: {
-    type: Array
+    type: Array,
   },
   adjustments: {
-    type: Array
+    type: Array,
   }, // floting cash me se adjustment
   floatingCash: {
-    type: Array
+    type: Array,
   }, // cash deposit to swiggy of orders
   isOnDuty: {
     type: Boolean,
     required: true,
     default: false,
   },
-  loginHistory: [{ // login inside the app for orders or onduty
-    from: {
-      type: Date
+  loginHistory: [
+    {
+      // login inside the app for orders or onduty
+      from: {
+        type: Date,
+      },
+      to: {
+        type: Date,
+      },
     },
-    to: {
-      type: Date
-    }
-  }], // firstmile and last should also be included somewhere
+  ], // firstmile and last should also be included somewhere
   rating: {
     type: Number,
-    required: false
+    required: false,
   },
   registeredOn: {
     type: Date,
     default: Date.now,
   },
-})
+});
 
-module.exports = mongoose.model("DeliveryPartner", deliveryPartnerSchema)
+module.exports = mongoose.model("DeliveryPartner", deliveryPartnerSchema);

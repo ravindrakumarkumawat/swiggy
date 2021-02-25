@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const { ROLE } = require("./Role")
+const { ROLE } = require("../utils/Role")
 const { ObjectId } = mongoose.Schema.Types
 const addressSchema = require('./AddressSchema')
 
