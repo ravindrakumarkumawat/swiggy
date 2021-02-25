@@ -169,6 +169,12 @@ const addItem = async (req, res) => {
       description,
       quantity    
     } = req.body
+    
+    const restaurant = await Restaurant.findOne({_id: id})
+    
+    if(!restaurant) {
+      return res.status(404).json({ error: "Restaurant does not exist"})
+    }
 
     const newItem = await Item.create({
       category, 
@@ -179,6 +185,9 @@ const addItem = async (req, res) => {
       restaurantId: mongoose.Types.ObjectId(id) 
     })
     
+    restaurant.menus.push(newItem._id)
+    await restaurant.save()
+
     res.status(201).json(newItem)
 
   } catch (err) {
