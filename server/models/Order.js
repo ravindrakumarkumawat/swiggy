@@ -23,7 +23,7 @@ const cartItemSchema = new mongoose.Schema({
 
 
 const orderSchema = new mongoose.Schema({
-  cart: [{ 
+  items: [{ 
     type: cartItemSchema,
     required: true
   }],

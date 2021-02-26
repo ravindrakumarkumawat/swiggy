@@ -84,7 +84,7 @@ const addOrder = async (req, res) => {
     const { id } = req.params
 
     const {
-      cart, 
+      items, 
       request, 
       totalPrice, 
       restaurantId, 
@@ -104,7 +104,7 @@ const addOrder = async (req, res) => {
     }
 
     const createOrder = await Order.create({ 
-      cart,
+      items,
       request,
       totalPrice,
       restaurantId: mongoose.Types.ObjectId(restaurantId),
