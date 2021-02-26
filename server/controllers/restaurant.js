@@ -254,12 +254,51 @@ const getAllOrders = async (req, res) => {
   }
 }
 
-const acceptOrder = async (req, res) => {
+const acceptedOrder = async (req, res) => {
   try {
     const { id, orderId } = req.params
-    const isAccepted = req.body
-    const order = await Order.findOneAndUpdate({ _id: orderId, restaurantId: id}, isAccepted, {new: true})
-  
+
+    const { isAccepted } = req.body
+
+    const order = await Order.findOne({ _id: orderId, restaurantId: id})
+
+    order.status.isAccepted = isAccepted
+    await order.save()
+
+    res.status(200).json(order)
+  } catch (err) {
+    res.status(200).json({ error: err.message })
+  }
+}
+
+const preparedOrder = async (req, res) => {
+  try {
+    const { id, orderId } = req.params
+
+    const { isPrepared } = req.body
+
+    const order = await Order.findOne({ _id: orderId, restaurantId: id})
+
+    order.status.isPrepared = isPrepared
+    await order.save()
+
+    res.status(200).json(order)
+  } catch (err) {
+    res.status(200).json({ error: err.message })
+  }
+}
+
+const readyOrder = async (req, res) => {
+  try {
+    const { id, orderId } = req.params
+
+    const { isReady } = req.body
+
+    const order = await Order.findOne({ _id: orderId, restaurantId: id})
+
+    order.status.isReady = isReady
+    await order.save()
+
     res.status(200).json(order)
   } catch (err) {
     res.status(200).json({ error: err.message })
@@ -276,5 +315,7 @@ module.exports = {
   updateItem,
   deleteItem,
   getAllOrders,
-  acceptOrder
+  acceptedOrder,
+  preparedOrder,
+  readyOrder
 }

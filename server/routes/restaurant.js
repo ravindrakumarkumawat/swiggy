@@ -12,7 +12,9 @@ const {
   updateItem,
   deleteItem,
   getAllOrders,
-  acceptOrder
+  acceptedOrder,
+  preparedOrder,
+  readyOrder
 } = require('../controllers/restaurant')
 
 router.get('/', getAllRestaurants)
@@ -37,6 +39,8 @@ router.patch('/:id/item/:itemId', updateItem)
 router.delete('/:id/item/:itemId', deleteItem)
 
 router.get('/:id/order', getAllOrders)
-router.patch('/:id/order/:orderId', acceptOrder)
+router.put('/:id/order/:orderId/accept', acceptedOrder)
+router.put('/:id/order/:orderId/prepare', preparedOrder)
+router.put('/:id/order/:orderId/ready', readyOrder)
 
 module.exports = router
