@@ -211,6 +211,12 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id, itemId } = req.params
+    
+    const restaurant = await Restaurant.findOne({_id: id}) 
+
+    if(!restaurant) {
+      return res.status(404).json({ error: "Restaurant doesn't exist"})
+    }
 
     const del = await Item.findOneAndDelete({ _id: itemId, restaurantId: id })
 
@@ -218,7 +224,17 @@ const deleteItem = async (req, res) => {
       return res.status(404).json({ error: "Item not found" })
     }
     
-    res.status(200).json({ deleted: true })
+    const index = restaurant.menus.findIndex((item) => String(item) === String(itemId)) 
+  
+    if(index !== -1) {
+      restaurant.menus.splice(index, 1)
+
+      await restaurant.save()
+
+      return res.status(200).json({ message: 'Item is successfully deleted' })
+    }
+
+    res.status(200).json({ message: "Item available inside restaurant" })
 
   } catch (err) {
     res.status(500).json({error: err.message})
