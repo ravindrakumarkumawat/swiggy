@@ -5,6 +5,7 @@ const { ObjectId } = mongoose.Schema.Types
 
 const Restaurant = require('../models/Restaurant')
 const Item = require('../models/Item')
+const Order = require('../models/Order')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
@@ -241,6 +242,30 @@ const deleteItem = async (req, res) => {
   }
 }
 
+const getAllOrders = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const orders = await Order.find({ restaurantId: id })
+
+    res.status(200).json(orders)
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+}
+
+const acceptOrder = async (req, res) => {
+  try {
+    const { id, orderId } = req.params
+    const isAccepted = req.body
+    const order = await Order.findOneAndUpdate({ _id: orderId, restaurantId: id}, isAccepted, {new: true})
+  
+    res.status(200).json(order)
+  } catch (err) {
+    res.status(200).json({ error: err.message })
+  }
+}
+
 module.exports = {
   getAllRestaurants,
   getRestaurant,
@@ -249,5 +274,7 @@ module.exports = {
   getAllItems,
   addItem,
   updateItem,
-  deleteItem
+  deleteItem,
+  getAllOrders,
+  acceptOrder
 }
