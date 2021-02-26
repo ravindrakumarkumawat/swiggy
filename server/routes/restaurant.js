@@ -14,7 +14,8 @@ const {
   getAllOrders,
   acceptedOrder,
   preparedOrder,
-  readyOrder
+  readyOrder,
+  statusUpdateOrder
 } = require('../controllers/restaurant')
 
 router.get('/', getAllRestaurants)
@@ -42,5 +43,7 @@ router.get('/:id/order', getAllOrders)
 router.put('/:id/order/:orderId/accept', acceptedOrder)
 router.put('/:id/order/:orderId/prepare', preparedOrder)
 router.put('/:id/order/:orderId/ready', readyOrder)
+
+router.put('/:id/order/:orderId', statusUpdateOrder)
 
 module.exports = router

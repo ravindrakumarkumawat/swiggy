@@ -1,7 +1,6 @@
 const path = require('path')
 require("dotenv").config({ path: path.resolve(__dirname, '../.env') })
 const mongoose = require('mongoose')
-const { ObjectId } = mongoose.Schema.Types
 
 const Restaurant = require('../models/Restaurant')
 const Item = require('../models/Item')
@@ -305,6 +304,38 @@ const readyOrder = async (req, res) => {
   }
 }
 
+const statusUpdateOrder = async (req, res) => {
+  try {
+    const { id, orderId } = req.params
+
+    const { isAccepted, isPrepared, isReady } = req.body
+
+    const order = await Order.findOne({ _id: orderId, restaurantId: id})
+
+    if(isAccepted) {
+      order.status.isAccepted = true
+    }
+
+    if(order.status.isAccepted && isPrepared) {
+      order.status.isPrepared = true
+    } else {
+      return res.status(404).json({error: "Order should be accepted"})
+    }
+
+    if(order.status.isPrepared && isReady) {
+      order.status.isReady = true
+    } else {
+      return res.status(404).json({error: "Order should be accepted & prepared"})
+    }
+
+    await order.save()
+
+    res.status(200).json(order)
+  } catch (err) {
+    res.status(200).json({ error: err.message })
+  }
+}
+
 module.exports = {
   getAllRestaurants,
   getRestaurant,
@@ -317,5 +348,6 @@ module.exports = {
   getAllOrders,
   acceptedOrder,
   preparedOrder,
-  readyOrder
+  readyOrder,
+  statusUpdateOrder
 }
