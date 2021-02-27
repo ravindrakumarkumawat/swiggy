@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express')
 const cors = require('cors')
-const { connectDB } = require('./db/connectDb')
+const { connectDB } = require('./models/db/connectDb')
 
 const restaurantRouter = require('./routes/restaurant')
 const customerRouter = require('./routes/customer')
