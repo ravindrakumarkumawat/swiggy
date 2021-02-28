@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express')
 const cors = require('cors')
-const { connectDB } = require('./models/db/connectDb')
+require('./models/db/connectDb')
 
 const restaurantRouter = require('./routes/restaurant')
 const customerRouter = require('./routes/customer')
@@ -10,7 +10,6 @@ const deliveryPartnerRouter = require('./routes/deliveryPartner')
 const app = express()
 
 const PORT = process.env.PORT || 3001
-connectDB()
 app.use(express.static(path.resolve(__dirname, '../client/build')))
 
 app.use(express.json())
