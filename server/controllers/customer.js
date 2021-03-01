@@ -16,14 +16,14 @@ const getAllCustomers = async (req, res) => {
 }
 
 const addCustomer = async (req, res) => {
-  try {
-    const { 
-      name, 
-      email,
-      password,
-      phone
-    } = req.body
+  const { 
+    name, 
+    email,
+    password,
+    phone
+  } = req.body
 
+  try {
     const salt = await bcrypt.genSalt()
     const passwordHash = await bcrypt.hash(password, salt)
 
@@ -51,9 +51,9 @@ const updateCustomer = async (req, res) => {
 }
 
 const deleteCustomer = async (req, res) => {
-  try {
-    const { id } = req.params
+  const { id } = req.params
 
+  try {
     const del = await Customer.findOneAndDelete({ _id: id })
 
     if(!del) {
@@ -68,8 +68,9 @@ const deleteCustomer = async (req, res) => {
 }
 
 const getAllOrders = async (req, res) => {
+  const { id } = req.params
+
   try {
-    const { id } = req.params
     const orders = await Order.find({ customerId: id})
     
     res.status(200).json(orders)
@@ -80,23 +81,23 @@ const getAllOrders = async (req, res) => {
 }
 
 const addOrder = async (req, res) => {
+  const { id } = req.params
+
+  const {
+    items, 
+    request, 
+    totalPrice, 
+    restaurantId, 
+    address,
+    landmark,
+    city,
+    country,
+    postalCode,
+    latitude,
+    longitude 
+  } = req.body
+
   try {
-    const { id } = req.params
-
-    const {
-      items, 
-      request, 
-      totalPrice, 
-      restaurantId, 
-      address,
-      landmark,
-      city,
-      country,
-      postalCode,
-      latitude,
-      longitude 
-    } = req.body
-
     const restaurant = await Restaurant.findOne({_id: restaurantId})
 
     if(!restaurant) {
