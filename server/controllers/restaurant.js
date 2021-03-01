@@ -20,9 +20,9 @@ const getAllRestaurants = async (req, res) => {
 }
 
 const getRestaurant = async (req, res) => {
-  try {
-    const { id } = req.params
+  const { id } = req.params
 
+  try {
     const restaurant = await Restaurant.findOne({ _id: id })
 
     if(!restaurant) {
@@ -37,9 +37,9 @@ const getRestaurant = async (req, res) => {
 }
 
 const deleteRestaurant = async (req, res) => {
-  try {
-    const { id } = req.params
+  const { id } = req.params
 
+  try {
     const del = await Restaurant.findOneAndDelete({ _id: id })
 
     if (!del) {
@@ -53,25 +53,25 @@ const deleteRestaurant = async (req, res) => {
 }
 
 const registerRestaurant = async (req, res) => {
-  try {
-    const { 
-      name, 
-      ownerName, 
-      email,  
-      password, 
-      phone, 
-      pocDesignation, 
-      address, 
-      landmark, 
-      city, 
-      country, 
-      postalCode, 
-      latitude, 
-      longitude,
-      cuisines, 
-      isRestaurantVeg
-    } = req.body
+  const { 
+    name, 
+    ownerName, 
+    email,  
+    password, 
+    phone, 
+    pocDesignation, 
+    address, 
+    landmark, 
+    city, 
+    country, 
+    postalCode, 
+    latitude, 
+    longitude,
+    cuisines, 
+    isRestaurantVeg
+  } = req.body
 
+  try {
     const salt = await bcrypt.genSalt()
     const passwordHash = await bcrypt.hash(password, salt)
 
@@ -110,10 +110,10 @@ const registerRestaurant = async (req, res) => {
 }
 
 const loginRestaurant = async (req, res) => {
+  const { email, password } = req.body
+
   try {
     // Authenticate restaurant
-
-    const { email, password } = req.body
 
     if(!email || !password) {
       return res.status(400).json({
@@ -148,8 +148,9 @@ const loginRestaurant = async (req, res) => {
 }
 
 const getAllItems = async (req, res) => {
+  const { id } = req.params
+
   try {
-    const { id } = req.params
     const items = await Item.find({ restaurantId: id })
 
     res.status(200).json(items)
@@ -160,16 +161,16 @@ const getAllItems = async (req, res) => {
 }
 
 const addItem = async (req, res) => {
-  try {
-    const { id } = req.params
-    const {
-      category, 
-      name,
-      price,
-      description,
-      quantity    
-    } = req.body
-    
+  const { id } = req.params
+  const {
+    category, 
+    name,
+    price,
+    description,
+    quantity    
+  } = req.body
+
+  try {    
     const restaurant = await Restaurant.findOne({_id: id})
     
     if(!restaurant) {
@@ -196,10 +197,10 @@ const addItem = async (req, res) => {
 }
 
 const updateItem = async (req, res) => {
-  try {
-    const { id, itemId } = req.params
-    const update = req.body
+  const { id, itemId } = req.params
+  const update = req.body
 
+  try {
     const item = await Item.findOneAndUpdate({_id: itemId, restaurantId: id}, update, {new: true})
     res.status(200).json(item)
 
@@ -208,10 +209,10 @@ const updateItem = async (req, res) => {
   }
 }
 
-const deleteItem = async (req, res) => {
-  try {
-    const { id, itemId } = req.params
+const deleteItem = async (req, res) => {  
+  const { id, itemId } = req.params
     
+  try {
     const restaurant = await Restaurant.findOne({_id: id}) 
 
     if(!restaurant) {
@@ -242,9 +243,9 @@ const deleteItem = async (req, res) => {
 }
 
 const getAllOrders = async (req, res) => {
-  try {
-    const { id } = req.params
+  const { id } = req.params
 
+  try {
     const orders = await Order.find({ restaurantId: id })
 
     res.status(200).json(orders)
@@ -254,11 +255,11 @@ const getAllOrders = async (req, res) => {
 }
 
 const acceptedOrder = async (req, res) => {
+  const { id, orderId } = req.params
+
+  const { isAccepted } = req.body
+
   try {
-    const { id, orderId } = req.params
-
-    const { isAccepted } = req.body
-
     const order = await Order.findOne({ _id: orderId, restaurantId: id})
 
     order.status.isAccepted = isAccepted
@@ -271,11 +272,11 @@ const acceptedOrder = async (req, res) => {
 }
 
 const preparedOrder = async (req, res) => {
+  const { id, orderId } = req.params
+
+  const { isPrepared } = req.body
+
   try {
-    const { id, orderId } = req.params
-
-    const { isPrepared } = req.body
-
     const order = await Order.findOne({ _id: orderId, restaurantId: id})
 
     order.status.isPrepared = isPrepared
@@ -288,11 +289,11 @@ const preparedOrder = async (req, res) => {
 }
 
 const readyOrder = async (req, res) => {
+  const { id, orderId } = req.params
+
+  const { isReady } = req.body
+
   try {
-    const { id, orderId } = req.params
-
-    const { isReady } = req.body
-
     const order = await Order.findOne({ _id: orderId, restaurantId: id})
 
     order.status.isReady = isReady
