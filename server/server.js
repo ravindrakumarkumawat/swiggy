@@ -15,7 +15,7 @@ app.use(express.static(path.resolve(__dirname, '../client/build')))
 app.use(express.json())
 app.use(cors())
 
-app.use("/api/restaurant", restaurantRouter)
+app.use("/api/restaurants", restaurantRouter)
 app.use("/api/customer", customerRouter)
 app.use("/api/deliverypartner", deliveryPartnerRouter)
 
