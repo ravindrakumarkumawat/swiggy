@@ -13,18 +13,18 @@ const getAllDeliveryPartners = async (req, res) => {
 }
 
 const addDeliveryPartner = async (req, res) => {
-  try {
-    const { 
-      name,
-      serviceArea,
-      city,
-      country,
-      vehicle,
-      email,
-      password,
-      phone
-    } = req.body
+  const { 
+    name,
+    serviceArea,
+    city,
+    country,
+    vehicle,
+    email,
+    password,
+    phone
+  } = req.body
 
+  try {
     const salt = await bcrypt.genSalt()
     const passwordHash = await bcrypt.hash(password, salt)
 
@@ -55,9 +55,9 @@ const updateDeliveryPartner = async (req, res) => {
 }
 
 const deleteDeliveryPartner = async (req, res) => {
-  try {
-    const { id } = req.params
+  const { id } = req.params
 
+  try {
     const del = await DeliveryPartner.findOneAndDelete({ _id: id })
 
     if(!del) {
