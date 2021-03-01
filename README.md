@@ -31,3 +31,21 @@
     DELETE http://localhost:3001/api/restaurant/:id 
   </li>
 </ol>
+
+
+### Menu
+
+<ol>
+  <li>
+    <code>getAllItems</code>
+
+    GET http://localhost:3001/api/restaurant/:id/item
+  </li>
+
+  <li>
+    <code>addItem</code><br>
+
+    POST http://localhost:3001/api/restaurant/:id/item  
+  </li>
+
+</ol>
