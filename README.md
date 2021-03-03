@@ -48,4 +48,16 @@
     POST http://localhost:3001/api/restaurants/:id/items 
   </li>
 
+  <li>
+    <code>updateItem</code>
+
+    PATCH http://localhost:3001/api/restaurants/:id/items
+  </li>
+
+  <li>
+    <code>deleteItem</code><br>
+
+    DELETE http://localhost:3001/api/restaurants/:id/items 
+  </li>
+
 </ol>
