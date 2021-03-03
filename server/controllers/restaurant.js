@@ -202,6 +202,11 @@ const updateItem = async (req, res) => {
 
   try {
     const item = await Item.findOneAndUpdate({_id: itemId, restaurantId: id}, update, {new: true})
+
+    if(!item) {
+      res.status(404).json({ error: "Item doesn't exist"})      
+    }
+
     res.status(200).json(item)
 
   } catch (err) {
