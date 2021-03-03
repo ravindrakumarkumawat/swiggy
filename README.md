@@ -10,19 +10,19 @@
   <li>
     <code>getAllRestaurants</code>
 
-    GET http://localhost:3001/api/restaurant 
+    GET http://localhost:3001/api/restaurants 
   </li>
 
   <li>
     <code>getRestaurant</code><br>
 
-    GET http://localhost:3001/api/restaurant/:id  
+    GET http://localhost:3001/api/restaurants/:id  
   </li>
 
   <li>
     <code>updateRestaurant</code>
     
-    PUT http://localhost:3001/api/restaurant/:id 
+    PUT http://localhost:3001/api/restaurants/:id 
   </li>
 
   <li>
@@ -39,13 +39,13 @@
   <li>
     <code>getAllItems</code>
 
-    GET http://localhost:3001/api/restaurant/:id/item
+    GET http://localhost:3001/api/restaurants/:id/items
   </li>
 
   <li>
     <code>addItem</code><br>
 
-    POST http://localhost:3001/api/restaurant/:id/item  
+    POST http://localhost:3001/api/restaurants/:id/items 
   </li>
 
 </ol>

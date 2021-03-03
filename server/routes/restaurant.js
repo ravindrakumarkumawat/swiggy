@@ -34,15 +34,15 @@ router.put('/:id', ()=> {
 
 router.delete('/:id', deleteRestaurant)
 
-router.get('/:id/item', getAllItems)
-router.post('/:id/item', addItem)
-router.patch('/:id/item/:itemId', updateItem)
-router.delete('/:id/item/:itemId', deleteItem)
+router.get('/:id/items', getAllItems)
+router.post('/:id/items', addItem)
+router.patch('/:id/items/:itemId', updateItem)
+router.delete('/:id/items/:itemId', deleteItem)
 
-router.get('/:id/order', getAllOrders)
-router.put('/:id/order/:orderId/accept', acceptedOrder)
-router.put('/:id/order/:orderId/prepare', preparedOrder)
-router.put('/:id/order/:orderId/ready', readyOrder)
+router.get('/:id/orders', getAllOrders)
+router.put('/:id/orders/:orderId/accept', acceptedOrder)
+router.put('/:id/orders/:orderId/prepare', preparedOrder)
+router.put('/:id/orders/:orderId/ready', readyOrder)
 
 // router.put('/:id/order/:orderId', statusUpdateOrder)
 

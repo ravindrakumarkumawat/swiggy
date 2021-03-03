@@ -15,7 +15,7 @@ router.post('/', addCustomer)
 router.put('/:id', updateCustomer)
 router.delete('/:id', deleteCustomer)
 
-router.get('/:id/order', getAllOrders)
-router.post('/:id/order', addOrder)
+router.get('/:id/orders', getAllOrders)
+router.post('/:id/orders', addOrder)
 
 module.exports = router

@@ -16,8 +16,8 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/api/restaurants", restaurantRouter)
-app.use("/api/customer", customerRouter)
-app.use("/api/deliverypartner", deliveryPartnerRouter)
+app.use("/api/customers", customerRouter)
+app.use("/api/deliverypartners", deliveryPartnerRouter)
 
 app.get("/api", (req, res) => {
   res.json({message: 'This is swiggy backend'})
