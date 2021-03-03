@@ -102,3 +102,48 @@
   </li>
 
 </ol>
+
+### Order
+
+<ol>
+  <li>
+    <code>getAllOrders</code>
+
+    GET http://localhost:3001/api/customers/:id/orders
+  </li>
+
+  <li>
+    <code>addOrder</code>
+
+    POST http://localhost:3001/api/customers/:id/orders
+  </li>
+
+</ol>
+
+### 3. Delivery Partner
+
+<ol>
+  <li>
+    <code>getAllDeliveryPartners</code>
+
+    GET http://localhost:3001/api/deliverypartners
+  </li>
+
+  <li>
+    <code>addDeliveryPartner / Register</code><br>
+
+    POST http://localhost:3001/api/deliverypartners 
+  </li>
+
+  <li>
+    <code>updateDeliveryPartner </code>
+    
+    PUT http://localhost:3001/api/deliverypartners/:id 
+  </li>
+
+  <li>
+    <code>deleteDeliveryPartner </code>
+    
+    DELETE http://localhost:3001/api/deliverypartners/:id 
+  </li>
+</ol>
