@@ -28,7 +28,7 @@
   <li>
     <code>deleteRestaurant</code>
     
-    DELETE http://localhost:3001/api/restaurant/:id 
+    DELETE http://localhost:3001/api/restaurants/:id 
   </li>
 </ol>
 
