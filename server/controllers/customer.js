@@ -43,10 +43,21 @@ const addCustomer = async (req, res) => {
 }
 
 const updateCustomer = async (req, res) => {
+  const { id } = req.params
+  const update = req.body
+
   try {
-    
+    if(update.address) return res.send('Abhi check karna h')
+
+    const customer = await Customer.findOneAndUpdate({ _id: id }, update, {new: true})
+
+    if(!customer) {
+      return res.status(404).json({ error: "Customer doesn't exist" })
+    }
+
+    res.status(200).json(customer)
   } catch (err) {
-    
+    res.status(500).json({error: err.message})
   }
 }
 
