@@ -4,7 +4,7 @@
 
 ## API
 
-### Restaurant
+### 1. Restaurant
 
 <ol>
   <li>
@@ -58,6 +58,47 @@
     <code>deleteItem</code><br>
 
     DELETE http://localhost:3001/api/restaurants/:id/items 
+  </li>
+
+</ol>
+
+
+### Order
+
+<ol>
+  <li>
+    <code>getAllOrders</code>
+
+    GET http://localhost:3001/api/restaurants/:id/orders
+  </li>
+
+</ol>
+
+### 2. Customer
+
+<ol>
+  <li>
+    <code>getAllCustomers</code>
+
+    GET http://localhost:3001/api/customers
+  </li>
+
+  <li>
+    <code>addCutomer / Register</code><br>
+
+    POST http://localhost:3001/api/customers
+  </li>
+
+  <li>
+    <code>updateCustomer</code>
+
+    PATCH http://localhost:3001/api/customers/:id
+  </li>
+
+  <li>
+    <code>deleteItem</code><br>
+
+    DELETE http://localhost:3001/api/customers/:id
   </li>
 
 </ol>
