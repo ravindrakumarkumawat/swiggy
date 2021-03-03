@@ -47,8 +47,17 @@ const addDeliveryPartner = async (req, res) => {
 }
 
 const updateDeliveryPartner = async (req, res) => {
+  const { id } = req.params  
+  const update = req.body
+
   try {
-    
+    const deliveryPartner = await DeliveryPartner.findOneAndUpdate({ _id: id}, update, {new: true})
+
+    if(!deliveryPartner) {
+      return res.status(404).json({ error: "Delivery Partner doesn't exist" })
+    }
+
+    res.status(200).json(deliveryPartner)
   } catch (err) {
     
   }

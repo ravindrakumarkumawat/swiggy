@@ -9,7 +9,7 @@ const {
 
 router.get('/', getAllDeliveryPartners)
 router.post('/', addDeliveryPartner)
-router.put('/:id', updateDeliveryPartner)
+router.patch('/:id', updateDeliveryPartner)
 router.delete('/:id', deleteDeliveryPartner)
 
 module.exports = router
