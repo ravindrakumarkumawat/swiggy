@@ -46,4 +46,46 @@ const itemSchema = new mongoose.Schema({
   }
 }) 
 
-module.exports = mongoose.model('Item', itemSchema)
+const Item = mongoose.model('Item', itemSchema)
+
+const getRestaurantAllItems = async (id) => {
+  try {
+    return Item.find({ restaurantId: id })
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
+const addRestaurantItem = async (req, restaurant) => {
+  const { id } = req.params
+  const {
+    category, 
+    name,
+    price,
+    description,
+    quantity    
+  } = req.body
+
+  try {
+    const newItem = await Item.create({
+      category, 
+      name,
+      price,
+      description,
+      quantity,
+      restaurantId: mongoose.Types.ObjectId(id) 
+    })
+
+    restaurant.menus.push(newItem._id)
+    await restaurant.save()
+
+    return newItem
+  } catch(err) {
+    return { error: err.message }
+  }
+}
+
+module.exports = {
+  getRestaurantAllItems,
+  addRestaurantItem
+}

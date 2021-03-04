@@ -7,8 +7,8 @@ const {
   getRestaurant,
   deleteRestaurant,
   // registerRestaurant,
-  // getAllItems,
-  // addItem,
+  getAllItems,
+  addItem,
   // updateItem,
   // deleteItem,
   // getAllOrders,
@@ -32,8 +32,8 @@ router.delete('/:id', deleteRestaurant)
 //   console.log('Updating something in restaurant')
 // })
 
-// router.get('/:id/items', getAllItems)
-// router.post('/:id/items', addItem)
+router.get('/:id/items', getAllItems)
+router.post('/:id/items', addItem)
 // router.patch('/:id/items/:itemId', updateItem)
 // router.delete('/:id/items/:itemId', deleteItem)
 

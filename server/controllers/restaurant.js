@@ -7,7 +7,12 @@ const {
   getRestaurantDocument,
   deleteRestaurantDocument
 } = require('../models/Restaurant')
-const Item = require('../models/Item')
+
+const {
+  getRestaurantAllItems,
+  addRestaurantItem
+} = require('../models/Item')
+
 const Order = require('../models/Order')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
@@ -150,64 +155,35 @@ const deleteRestaurant = async (req, res) => {
 const getAllItems = async (req, res) => {
   const { id } = req.params
 
-  try {
-    const items = await Item.find({ restaurantId: id })
+  const items = await getRestaurantAllItems(id)
 
-    res.status(200).json(items)
-
-  } catch (err) {
-    res.status(500).json({error: err.message})
+  if(items.error) {
+    return res.status(500).json(items)
   }
+
+  res.status(200).json(items)
 }
 
-const getAllItems1 = async (req, res) => {
+const addItem = async (req, res) => {
   const { id } = req.params
+  const restaurant = await getRestaurantDocument(id)
 
-  try {
-    const items = await Item.find({ restaurantId: id })
-
-    res.status(200).json(items)
-
-  } catch (err) {
-    res.status(500).json({error: err.message})
+  if(restaurant.error) {
+    return res.status(500).json(restaurant)
   }
+
+  if(restaurant.message) {
+    return res.status(404).json(restaurant)
+  }
+
+  const item = await addRestaurantItem(req, restaurant)
+
+  if(item.error) {
+    return res.status(500).json(item)
+  }
+
+  res.status(201).json(item)
 }
-
-// const addItem = async (req, res) => {
-//   const { id } = req.params
-//   const {
-//     category, 
-//     name,
-//     price,
-//     description,
-//     quantity    
-//   } = req.body
-
-//   try {    
-//     const restaurant = await Restaurant.findOne({_id: id})
-    
-//     if(!restaurant) {
-//       return res.status(404).json({ error: "Restaurant does not exist"})
-//     }
-
-//     const newItem = await Item.create({
-//       category, 
-//       name,
-//       price,
-//       description,
-//       quantity,
-//       restaurantId: mongoose.Types.ObjectId(id) 
-//     })
-    
-//     restaurant.menus.push(newItem._id)
-//     await restaurant.save()
-
-//     res.status(201).json(newItem)
-
-//   } catch (err) {
-//     res.status(500).json({error: err.message})
-//   }
-// }
 
 // const updateItem = async (req, res) => {
 //   const { id, itemId } = req.params
@@ -360,8 +336,8 @@ module.exports = {
   getRestaurant,
   deleteRestaurant,
   // registerRestaurant,
-  // getAllItems,
-  // addItem,
+  getAllItems,
+  addItem,
   // updateItem,
   // deleteItem,
   // getAllOrders,
