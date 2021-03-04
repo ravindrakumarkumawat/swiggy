@@ -1,7 +1,8 @@
-const mongoose = require("mongoose");
-const { ROLE } = require("../utils/Role");
-const { ObjectId } = mongoose.Schema.Types;
-const addressSchema = require("./AddressSchema");
+const mongoose = require("mongoose")
+const { ROLE } = require("../utils/Role")
+const { ObjectId } = mongoose.Schema.Types
+const addressSchema = require("./AddressSchema")
+const bcrypt = require('bcrypt')
 
 const customerSchema = new mongoose.Schema({
   name: {
@@ -48,6 +49,33 @@ const getAllCustomersDocument = async () => {
     return { error: err.message }
   }
 }
+
+const addCustomerDocument = async (req) => {
+  const { 
+    name, 
+    email,
+    password,
+    phone
+  } = req.body
+
+  try {
+    const salt = await bcrypt.genSalt()
+    const passwordHash = await bcrypt.hash(password, salt)
+
+    const savedCustomer = await Customer.create({
+      name, 
+      email,
+      password: passwordHash,
+      phone
+    })
+
+    return savedCustomer
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
 module.exports = {
-  getAllCustomersDocument
+  getAllCustomersDocument,
+  addCustomerDocument
 }

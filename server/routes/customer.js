@@ -11,7 +11,7 @@ const {
 } = require('../controllers/customer')
 
 router.get('/', getAllCustomers)
-// router.post('/', addCustomer)
+router.post('/', addCustomer)
 // router.patch('/:id', updateCustomer)
 // router.delete('/:id', deleteCustomer)
 

@@ -1,5 +1,6 @@
 const { 
-  getAllCustomersDocument 
+  getAllCustomersDocument,
+  addCustomerDocument 
 } = require('../models/Customer')
 
 const Restaurant = require('../models/Restaurant')
@@ -14,6 +15,16 @@ const getAllCustomers = async (req, res) => {
   } 
 
   res.status(200).json(customers)
+}
+
+const addCustomer = async (req, res) => {
+  const customer = await addCustomerDocument(req)
+
+  if(customer.error) {
+    return res.status(500).json(customer)
+  }
+  
+  res.status(201).json(customer)
 }
 
 // const addCustomer = async (req, res) => {
@@ -146,7 +157,7 @@ const getAllCustomers = async (req, res) => {
 
 module.exports = {
   getAllCustomers,
-  // addCustomer,
+  addCustomer,
   // updateCustomer,
   // deleteCustomer,
   // getAllOrders,
