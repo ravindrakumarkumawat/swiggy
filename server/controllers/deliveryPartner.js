@@ -1,82 +1,57 @@
-const DeliveryPartner = require('../models/DeliveryPartner')
-const bcrypt = require('bcrypt')
+const { 
+  getAllDeliveryPartnersDocument,
+  addDeliveryPartnerDocument,
+  updateDeliveryPartnerDocument,
+  deleteDeliveryPartnerDocument 
+} = require('../models/DeliveryPartner')
 
 const getAllDeliveryPartners = async (req, res) => {
-  try {
-    const deliveryPartner = await DeliveryPartner.find()
-
-    res.status(200).json(deliveryPartner)
-
-  } catch (err) {
-    res.status(500).json({ error: err.message })
+  const deliveryPartner = await getAllDeliveryPartnersDocument()
+  
+  if(deliveryPartner.error) {
+    return res.status(500).json(deliveryPartner)
   }
+
+  res.status(200).json(deliveryPartner)  
 }
 
 const addDeliveryPartner = async (req, res) => {
-  const { 
-    name,
-    serviceArea,
-    city,
-    country,
-    vehicle,
-    email,
-    password,
-    phone
-  } = req.body
+  const savedDeliveryPartner = await addDeliveryPartnerDocument(req)
 
-  try {
-    const salt = await bcrypt.genSalt()
-    const passwordHash = await bcrypt.hash(password, salt)
-
-    const savedDeliveryPartner = await DeliveryPartner.create({
-      name,
-      serviceArea,
-      city,
-      country,
-      vehicle,
-      email,
-      phone,
-      password: passwordHash
-    })
-
-    res.status(201).json(savedDeliveryPartner)
-
-  } catch (err) {
-    res.status(500).json({ error: err.message })
+  if(savedDeliveryPartner.error) {
+    return res.status(500).json(savedDeliveryPartner)
   }
+
+  res.status(201).json(savedDeliveryPartner)
 }
 
 const updateDeliveryPartner = async (req, res) => {
-  const { id } = req.params  
-  const update = req.body
+  const deliveryPartner = await updateDeliveryPartnerDocument(req)
 
-  try {
-    const deliveryPartner = await DeliveryPartner.findOneAndUpdate({ _id: id}, update, {new: true})
-
-    if(!deliveryPartner) {
-      return res.status(404).json({ error: "Delivery Partner doesn't exist" })
-    }
-
-    res.status(200).json(deliveryPartner)
-  } catch (err) {
-    
+  if(deliveryPartner.error) {
+    return res.status(500).json(deliveryPartner)
   }
+
+  if(deliveryPartner.message) {
+    return res.status(404).json(deliveryPartner)
+  }
+  res.status(200).json(deliveryPartner)  
 }
 
 const deleteDeliveryPartner = async (req, res) => {
   const { id } = req.params
 
-  try {
-    const del = await DeliveryPartner.findOneAndDelete({ _id: id })
+  const deliveryPartner = await deleteDeliveryPartnerDocument(id)
 
-    if(!del) {
-      return res.status(404).json({ error: "Delivery Partner is not found" })
-    }
-
-    res.status(200).json({ deleted: true })
-  } catch (err) {
-    
+  if(deliveryPartner.error) {
+    return res.status(500).json(deliveryPartner)
   }
+  
+  if(deliveryPartner.message) {
+    return res.status(404).json(deliveryPartner)
+  }
+
+  res.status(200).json(deliveryPartner)
 }
 
 

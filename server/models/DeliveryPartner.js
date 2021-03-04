@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { ROLE } = require("../utils/Role");
+const bcrypt = require('bcrypt')
 
 const deliveryPartnerSchema = new mongoose.Schema({
   name: {
@@ -82,4 +83,83 @@ const deliveryPartnerSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("DeliveryPartner", deliveryPartnerSchema);
+const DeliveryPartner = mongoose.model("DeliveryPartner", deliveryPartnerSchema)
+
+const getAllDeliveryPartnersDocument = async () => {
+  try {
+    return DeliveryPartner.find()
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
+const addDeliveryPartnerDocument = async (req) => {
+  const { 
+    name,
+    serviceArea,
+    city,
+    country,
+    vehicle,
+    email,
+    password,
+    phone
+  } = req.body
+
+  try {
+    const salt = await bcrypt.genSalt()
+    const passwordHash = await bcrypt.hash(password, salt)
+
+    const savedDeliveryPartner = await DeliveryPartner.create({
+      name,
+      serviceArea,
+      city,
+      country,
+      vehicle,
+      email,
+      phone,
+      password: passwordHash
+    })
+
+    return savedDeliveryPartner
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
+const updateDeliveryPartnerDocument = async (req) => {
+  const { id } = req.params  
+  const update = req.body
+
+  try {
+    const deliveryPartner = await DeliveryPartner.findOneAndUpdate({ _id: id}, update, {new: true})
+
+    if(!deliveryPartner) {
+      return { message: "Delivery Partner doesn't exist" }
+    }
+
+    return deliveryPartner
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
+const deleteDeliveryPartnerDocument = async (id) => {
+  try {
+    const deliveryPartner = await DeliveryPartner.findOneAndDelete({ _id: id })
+
+    if(!deliveryPartner) {
+      return { message: "Delivery Partner doesn't exist" }
+    }
+
+    return { deleted: true }
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
+module.exports = {
+  getAllDeliveryPartnersDocument,
+  addDeliveryPartnerDocument,
+  updateDeliveryPartnerDocument,
+  deleteDeliveryPartnerDocument
+}
