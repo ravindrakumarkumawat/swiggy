@@ -76,7 +76,7 @@ const getAllOrders = async (req, res) => {
   const orders = await getCustomerAllOrders(id) 
   
   if(orders.message) {
-    return res.status(404).json(order)
+    return res.status(404).json(orders)
   }
 
   if(orders.error) {
