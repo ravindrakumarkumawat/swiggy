@@ -68,4 +68,48 @@ const restaurantSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model("Restaurant", restaurantSchema)
+const Restaurant  = mongoose.model("Restaurant", restaurantSchema)
+
+const getAllRestaurantDocuments = async () => {
+  try {
+    return Restaurant.find()
+  } catch (err){
+    return { error: err.message }
+  }
+}
+
+const getRestaurantDocument = async (id) => {
+  try {
+    const restaurant = await Restaurant.findOne({ _id: id })
+
+    if(!restaurant) {
+      return {
+        message: 'Restaurant not found'
+      }
+    }
+
+    return restaurant
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
+const deleteRestaurantDocument = async (id) => {
+  try {
+    const restaurant = await Restaurant.findOneAndDelete({ _id: id })
+
+    if (!restaurant) {
+      return { message: "Restaurant not found" }
+    }
+    
+  return { deleted: true }
+  } catch(err) {
+    return { error: err.message }
+  }
+}
+
+module.exports = {
+  getAllRestaurantDocuments,
+  getRestaurantDocument,
+  deleteRestaurantDocument
+}

@@ -6,43 +6,41 @@ const {
   getAllRestaurants,
   getRestaurant,
   deleteRestaurant,
-  registerRestaurant,
-  getAllItems,
-  addItem,
-  updateItem,
-  deleteItem,
-  getAllOrders,
-  acceptedOrder,
-  preparedOrder,
-  readyOrder,
-  statusUpdateOrder
+  // registerRestaurant,
+  // getAllItems,
+  // addItem,
+  // updateItem,
+  // deleteItem,
+  // getAllOrders,
+  // acceptedOrder,
+  // preparedOrder,
+  // readyOrder,
+  // statusUpdateOrder
 } = require('../controllers/restaurant')
 
 router.get('/', getAllRestaurants)
-
 router.get('/:id', getRestaurant)
-
-router.post('/register', registerRestaurant)
-
-router.post('/login', ()=> {
-  console.log('Login restaurant')
-})
-
-router.put('/:id', ()=> {
-  console.log('Updating something in restaurant')
-})
-
 router.delete('/:id', deleteRestaurant)
 
-router.get('/:id/items', getAllItems)
-router.post('/:id/items', addItem)
-router.patch('/:id/items/:itemId', updateItem)
-router.delete('/:id/items/:itemId', deleteItem)
+// router.post('/register', registerRestaurant)
 
-router.get('/:id/orders', getAllOrders)
-router.put('/:id/orders/:orderId/accept', acceptedOrder)
-router.put('/:id/orders/:orderId/prepare', preparedOrder)
-router.put('/:id/orders/:orderId/ready', readyOrder)
+// router.post('/login', ()=> {
+//   console.log('Login restaurant')
+// })
+
+// router.put('/:id', ()=> {
+//   console.log('Updating something in restaurant')
+// })
+
+// router.get('/:id/items', getAllItems)
+// router.post('/:id/items', addItem)
+// router.patch('/:id/items/:itemId', updateItem)
+// router.delete('/:id/items/:itemId', deleteItem)
+
+// router.get('/:id/orders', getAllOrders)
+// router.put('/:id/orders/:orderId/accept', acceptedOrder)
+// router.put('/:id/orders/:orderId/prepare', preparedOrder)
+// router.put('/:id/orders/:orderId/ready', readyOrder)
 
 // router.put('/:id/order/:orderId', statusUpdateOrder)
 
