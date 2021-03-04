@@ -11,7 +11,7 @@ const {
   addItem,
   updateItem,
   deleteItem,
-  // getAllOrders,
+  getAllOrders,
   // acceptedOrder,
   // preparedOrder,
   // readyOrder,
@@ -37,7 +37,7 @@ router.post('/:id/items', addItem)
 router.patch('/:id/items/:itemId', updateItem)
 router.delete('/:id/items/:itemId', deleteItem)
 
-// router.get('/:id/orders', getAllOrders)
+router.get('/:id/orders', getAllOrders)
 // router.put('/:id/orders/:orderId/accept', acceptedOrder)
 // router.put('/:id/orders/:orderId/prepare', preparedOrder)
 // router.put('/:id/orders/:orderId/ready', readyOrder)

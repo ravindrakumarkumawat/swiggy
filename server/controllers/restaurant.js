@@ -14,7 +14,10 @@ const {
   deleteRestaurantItem
 } = require('../models/Item')
 
-const Order = require('../models/Order')
+const {
+  getRestaurantAllOrders
+} = require('../models/Order')
+
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
@@ -225,17 +228,18 @@ const deleteItem = async (req, res) => {
   res.status(200).json(item)
 }
 
-// const getAllOrders = async (req, res) => {
-//   const { id } = req.params
 
-//   try {
-//     const orders = await Order.find({ restaurantId: id })
 
-//     res.status(200).json(orders)
-//   } catch (err) {
-//     res.status(500).json({ error: err.message })
-//   }
-// }
+const getAllOrders = async (req, res) => {
+  const { id } = req.params
+  const orders = await getRestaurantAllOrders(id)
+
+  if(orders.error) {
+    res.status(500).json(orders)
+  }
+
+  res.status(200).json(orders)
+}
 
 // const acceptedOrder = async (req, res) => {
 //   const { id, orderId } = req.params
@@ -329,7 +333,7 @@ module.exports = {
   addItem,
   updateItem,
   deleteItem,
-  // getAllOrders,
+  getAllOrders,
   // acceptedOrder,
   // preparedOrder,
   // readyOrder,

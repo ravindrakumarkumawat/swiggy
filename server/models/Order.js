@@ -107,6 +107,18 @@ const orderSchema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.model("Order", orderSchema)
+const Order = mongoose.model("Order", orderSchema)
+
+const getRestaurantAllOrders = async (id) => {
+  try {
+    return Order.find({ restaurantId: id })
+  } catch (err) {
+    return { error: err.message}
+  }
+}
+
+module.exports = {
+  getRestaurantAllOrders
+}
 
 
