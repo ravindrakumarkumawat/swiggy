@@ -10,7 +10,8 @@ const {
 
 const {
   getRestaurantAllItems,
-  addRestaurantItem
+  addRestaurantItem,
+  updateRestaurantItem
 } = require('../models/Item')
 
 const Order = require('../models/Order')
@@ -185,23 +186,19 @@ const addItem = async (req, res) => {
   res.status(201).json(item)
 }
 
-// const updateItem = async (req, res) => {
-//   const { id, itemId } = req.params
-//   const update = req.body
+const updateItem = async (req, res) => {
+  const item = await updateRestaurantItem(req)
 
-//   try {
-//     const item = await Item.findOneAndUpdate({_id: itemId, restaurantId: id}, update, {new: true})
+  if(item.error) {
+    return res.status(500).json(item)
+  }
 
-//     if(!item) {
-//       return res.status(404).json({ error: "Item doesn't exist"})      
-//     }
+  if(item.message) {
+    return res.status(404).json(item)
+  }
 
-//     res.status(200).json(item)
-
-//   } catch (err) {
-//     res.status(500).json({error: err.message})
-//   }
-// }
+  res.status(200).json(item)
+}
 
 // const deleteItem = async (req, res) => {  
 //   const { id, itemId } = req.params
@@ -338,7 +335,7 @@ module.exports = {
   // registerRestaurant,
   getAllItems,
   addItem,
-  // updateItem,
+  updateItem,
   // deleteItem,
   // getAllOrders,
   // acceptedOrder,

@@ -85,7 +85,25 @@ const addRestaurantItem = async (req, restaurant) => {
   }
 }
 
+const updateRestaurantItem = async (req) => {
+  const { id, itemId } = req.params
+  const update = req.body
+
+  try {
+    const item = await Item.findOneAndUpdate({_id: itemId, restaurantId: id}, update, {new: true})
+
+    if(!item) {
+      return { message: "Item doesn't exist" }
+    }
+
+    return item
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
 module.exports = {
   getRestaurantAllItems,
-  addRestaurantItem
+  addRestaurantItem,
+  updateRestaurantItem
 }

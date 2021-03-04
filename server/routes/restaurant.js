@@ -9,7 +9,7 @@ const {
   // registerRestaurant,
   getAllItems,
   addItem,
-  // updateItem,
+  updateItem,
   // deleteItem,
   // getAllOrders,
   // acceptedOrder,
@@ -34,7 +34,7 @@ router.delete('/:id', deleteRestaurant)
 
 router.get('/:id/items', getAllItems)
 router.post('/:id/items', addItem)
-// router.patch('/:id/items/:itemId', updateItem)
+router.patch('/:id/items/:itemId', updateItem)
 // router.delete('/:id/items/:itemId', deleteItem)
 
 // router.get('/:id/orders', getAllOrders)
