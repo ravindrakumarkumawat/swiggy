@@ -102,8 +102,35 @@ const updateRestaurantItem = async (req) => {
   }
 }
 
+const deleteRestaurantItem = async (req, restaurant) => {
+  const { id, itemId } = req.params
+
+  try {
+    const item = await Item.findOneAndDelete({ _id: itemId, restaurantId: id })
+
+    if(!item) {
+      return { message: "Item doesn't exist" }
+    }
+
+    
+    const index = restaurant.menus.findIndex((item) => String(item) === String(itemId))
+
+    if(index !== -1) {
+      restaurant.menus.splice(index, 1)
+
+      await restaurant.save()
+
+      return { delete: true }
+    }
+
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
 module.exports = {
   getRestaurantAllItems,
   addRestaurantItem,
-  updateRestaurantItem
+  updateRestaurantItem,
+  deleteRestaurantItem
 }

@@ -1,6 +1,5 @@
 const path = require('path')
 require("dotenv").config({ path: path.resolve(__dirname, '../.env') })
-const mongoose = require('mongoose')
 
 const {
   getAllRestaurantsDocument,
@@ -11,7 +10,8 @@ const {
 const {
   getRestaurantAllItems,
   addRestaurantItem,
-  updateRestaurantItem
+  updateRestaurantItem,
+  deleteRestaurantItem
 } = require('../models/Item')
 
 const Order = require('../models/Order')
@@ -233,6 +233,31 @@ const updateItem = async (req, res) => {
 //   }
 // }
 
+const deleteItem = async (req, res) => {
+  const { id } = req.params
+  const restaurant = await getRestaurantDocument(id)
+
+  if(restaurant.error) {
+    return res.status(500).json(restaurant)
+  }
+
+  if(restaurant.message) {
+    return res.status(404).json(restaurant)
+  }
+
+  const item = await deleteRestaurantItem(req, restaurant)
+
+  if(item.error) {
+    return res.status(500).json(item)
+  }
+
+  if(item.message) {
+    return res.status(404).json(item)
+  }
+
+  res.status(200).json(item)
+}
+
 // const getAllOrders = async (req, res) => {
 //   const { id } = req.params
 
@@ -336,7 +361,7 @@ module.exports = {
   getAllItems,
   addItem,
   updateItem,
-  // deleteItem,
+  deleteItem,
   // getAllOrders,
   // acceptedOrder,
   // preparedOrder,
