@@ -70,7 +70,7 @@ const restaurantSchema = new mongoose.Schema({
 
 const Restaurant  = mongoose.model("Restaurant", restaurantSchema)
 
-const getAllRestaurantDocuments = async () => {
+const getAllRestaurantsDocument = async () => {
   try {
     return Restaurant.find()
   } catch (err){
@@ -109,7 +109,7 @@ const deleteRestaurantDocument = async (id) => {
 }
 
 module.exports = {
-  getAllRestaurantDocuments,
+  getAllRestaurantsDocument,
   getRestaurantDocument,
   deleteRestaurantDocument
 }

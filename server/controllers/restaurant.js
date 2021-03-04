@@ -3,7 +3,7 @@ require("dotenv").config({ path: path.resolve(__dirname, '../.env') })
 const mongoose = require('mongoose')
 
 const {
-  getAllRestaurantDocuments,
+  getAllRestaurantsDocument,
   getRestaurantDocument,
   deleteRestaurantDocument
 } = require('../models/Restaurant')
@@ -13,7 +13,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const getAllRestaurants = async (req, res) => {
-  const restaurants = await getAllRestaurantDocuments()
+  const restaurants = await getAllRestaurantsDocument()
 
   if(restaurants.error) {
     return res.status(500).json(restaurants)
@@ -36,22 +36,6 @@ const getRestaurant = async (req, res) => {
 
   res.status(200).json(restaurant)
 }
-
-// const deleteRestaurant = async (req, res) => {
-//   const { id } = req.params
-
-//   try {
-//     const del = await Restaurant.findOneAndDelete({ _id: id })
-
-//     if (!del) {
-//       return res.status(404).json({ error: "Restaurant not found" })
-//     }
-    
-//     res.status(200).json({ deleted: true })
-//   } catch (err) {
-//     res.status(500).json({ error: err.message })
-//   }
-// }
 
 const deleteRestaurant = async (req, res) => {
   const { id } = req.params
@@ -163,18 +147,31 @@ const deleteRestaurant = async (req, res) => {
 //   }  
 // }
 
-// const getAllItems = async (req, res) => {
-//   const { id } = req.params
+const getAllItems = async (req, res) => {
+  const { id } = req.params
 
-//   try {
-//     const items = await Item.find({ restaurantId: id })
+  try {
+    const items = await Item.find({ restaurantId: id })
 
-//     res.status(200).json(items)
+    res.status(200).json(items)
 
-//   } catch (err) {
-//     res.status(500).json({error: err.message})
-//   }
-// }
+  } catch (err) {
+    res.status(500).json({error: err.message})
+  }
+}
+
+const getAllItems1 = async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const items = await Item.find({ restaurantId: id })
+
+    res.status(200).json(items)
+
+  } catch (err) {
+    res.status(500).json({error: err.message})
+  }
+}
 
 // const addItem = async (req, res) => {
 //   const { id } = req.params
