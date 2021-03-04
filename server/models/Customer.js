@@ -3,6 +3,7 @@ const { ROLE } = require("../utils/Role")
 const { ObjectId } = mongoose.Schema.Types
 const addressSchema = require("./AddressSchema")
 const bcrypt = require('bcrypt')
+const { generateHashPassword } = require('../utils/generateHashPassword')
 
 const customerSchema = new mongoose.Schema({
   name: {
@@ -72,8 +73,7 @@ const addCustomerDocument = async (req) => {
   } = req.body
 
   try {
-    const salt = await bcrypt.genSalt()
-    const passwordHash = await bcrypt.hash(password, salt)
+    const passwordHash = await generateHashPassword(password)
 
     const savedCustomer = await Customer.create({
       name, 
