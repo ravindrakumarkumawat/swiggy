@@ -12,8 +12,8 @@ const {
 
 router.get('/', getAllCustomers)
 router.post('/', addCustomer)
-// router.patch('/:id', updateCustomer)
-// router.delete('/:id', deleteCustomer)
+router.patch('/:id', updateCustomer)
+router.delete('/:id', deleteCustomer)
 
 // router.get('/:id/orders', getAllOrders)
 // router.post('/:id/orders', addOrder)

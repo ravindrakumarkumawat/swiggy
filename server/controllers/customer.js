@@ -1,6 +1,8 @@
 const { 
   getAllCustomersDocument,
-  addCustomerDocument 
+  addCustomerDocument,
+  updateCustomerDocument,
+  deleteCustomerDocument
 } = require('../models/Customer')
 
 const Restaurant = require('../models/Restaurant')
@@ -27,68 +29,34 @@ const addCustomer = async (req, res) => {
   res.status(201).json(customer)
 }
 
-// const addCustomer = async (req, res) => {
-//   const { 
-//     name, 
-//     email,
-//     password,
-//     phone
-//   } = req.body
+const updateCustomer = async (req, res) => {
+  const customer = await updateCustomerDocument(req)
 
-//   try {
-//     const salt = await bcrypt.genSalt()
-//     const passwordHash = await bcrypt.hash(password, salt)
+  if(customer.message) {
+    return res.status(404).json(customer)
+  }
 
-//     const savedCustomer = await Customer.create({
-//       name, 
-//       email,
-//       password: passwordHash,
-//       phone
-//     })
+  if(customer.error) {
+    return res.status(500).json(customer)
+  }
 
+  res.status(200).json(customer)
+}
 
-//     res.status(201).json(savedCustomer)
+const deleteCustomer = async (req, res) => {
+  const { id } = req.params
+  const customer = await deleteCustomerDocument(id)
 
-//   } catch (err) {
-//     res.status(500).json({ error: err.message })
-//   }
-// }
+  if(customer.error) {
+    return res.status(500).json(customer)
+  }
 
-// const updateCustomer = async (req, res) => {
-//   const { id } = req.params
-//   const update = req.body
+  if(customer.message) {
+    return res.status(404).json(customer)
+  }
 
-//   try {
-//     if(update.address) return res.send('Abhi check karna h')
-
-//     const customer = await Customer.findOneAndUpdate({ _id: id }, update, {new: true})
-
-//     if(!customer) {
-//       return res.status(404).json({ error: "Customer doesn't exist" })
-//     }
-
-//     res.status(200).json(customer)
-//   } catch (err) {
-//     res.status(500).json({error: err.message})
-//   }
-// }
-
-// const deleteCustomer = async (req, res) => {
-//   const { id } = req.params
-
-//   try {
-//     const del = await Customer.findOneAndDelete({ _id: id })
-
-//     if(!del) {
-//       return res.status(404).json({ error: "Customer is not found" })
-//     }
-
-//     res.status(200).json({ deleted: true })
-    
-//   } catch (err) {
-//     res.status(500).json({ error: err.message })
-//   }
-// }
+  res.status(200).json(customer)
+}
 
 // const getAllOrders = async (req, res) => {
 //   const { id } = req.params
@@ -158,8 +126,8 @@ const addCustomer = async (req, res) => {
 module.exports = {
   getAllCustomers,
   addCustomer,
-  // updateCustomer,
-  // deleteCustomer,
+  updateCustomer,
+  deleteCustomer,
   // getAllOrders,
   // addOrder
 }

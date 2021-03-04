@@ -75,7 +75,44 @@ const addCustomerDocument = async (req) => {
   }
 }
 
+const updateCustomerDocument = async (req) => {
+  const { id } = req.params
+  const update = req.body
+
+  try {
+    if(update.address) {
+      return { message: 'I have to work on' }
+    }
+
+    const customer = await Customer.findOneAndUpdate({ _id: id }, update, {new: true})
+
+    if(!customer) {
+      return { message: "Customer doesn't exist" }
+    }
+
+    return customer
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
+const deleteCustomerDocument = async (id) => {
+  try {
+    const customer = await Customer.findOneAndDelete({ _id: id })
+
+    if (!customer) {
+      return { message: "Customer not found" }
+    }
+    
+  return { deleted: true }
+  } catch(err) {
+    return { error: err.message }
+  }
+}
+
 module.exports = {
   getAllCustomersDocument,
-  addCustomerDocument
+  addCustomerDocument,
+  updateCustomerDocument,
+  deleteCustomerDocument
 }
