@@ -11,11 +11,11 @@ const {
 } = require('../controllers/customer')
 
 router.get('/', getAllCustomers)
-router.post('/', addCustomer)
-router.patch('/:id', updateCustomer)
-router.delete('/:id', deleteCustomer)
+// router.post('/', addCustomer)
+// router.patch('/:id', updateCustomer)
+// router.delete('/:id', deleteCustomer)
 
-router.get('/:id/orders', getAllOrders)
-router.post('/:id/orders', addOrder)
+// router.get('/:id/orders', getAllOrders)
+// router.post('/:id/orders', addOrder)
 
 module.exports = router

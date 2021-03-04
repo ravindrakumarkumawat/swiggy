@@ -37,6 +37,17 @@ const customerSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-});
+})
 
-module.exports = mongoose.model("Customer", customerSchema);
+const Customer = mongoose.model("Customer", customerSchema)
+
+const getAllCustomersDocument = async () => {
+  try {
+    return Customer.find()
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+module.exports = {
+  getAllCustomersDocument
+}
