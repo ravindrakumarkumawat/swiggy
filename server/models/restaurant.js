@@ -2,6 +2,8 @@ const mongoose = require("mongoose")
 const { ROLE } = require("../utils/Role")
 const { ObjectId } = mongoose.Schema.Types
 const addressSchema = require('./AddressSchema')
+const { generateHashPassword } = require('../utils/generateHashPassword')
+const jwt = require('jsonwebtoken')
 
 const restaurantSchema = new mongoose.Schema({
   name: {
@@ -9,7 +11,7 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  ownername: {
+  ownerName: {
     type: String,
     required: true
   },
@@ -108,8 +110,64 @@ const deleteRestaurantDocument = async (id) => {
   }
 }
 
+const register = async (req) => {
+  const { 
+    name, 
+    ownerName, 
+    email,  
+    password, 
+    phone, 
+    pocDesignation, 
+    address, 
+    landmark, 
+    city, 
+    country, 
+    postalCode, 
+    latitude, 
+    longitude,
+    cuisines, 
+    isRestaurantVeg
+  } = req.body
+
+  try {
+    const passwordHash = await generateHashPassword(password)
+    
+    const newRestaurant = new Restaurant({
+      name,
+      ownerName,
+      email,
+      phone, 
+      pocDesignation,
+      password: passwordHash,
+      cuisines,
+      outlet: {
+        address,
+        landmark,
+        city,
+        country,
+        postalCode,
+        coordinate: {
+          latitude,
+          longitude
+        }
+      },
+      isRestaurantVeg
+    })
+
+    const savedRestaurant = await newRestaurant.save()
+    
+    // const id = { id: savedRestaurant._id }
+    // const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
+
+    return savedRestaurant
+  } catch(err) {
+    return { error: err.message }
+  }
+}
+
 module.exports = {
   getAllRestaurantsDocument,
   getRestaurantDocument,
-  deleteRestaurantDocument
+  deleteRestaurantDocument,
+  register
 }

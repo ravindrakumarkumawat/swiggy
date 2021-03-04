@@ -4,7 +4,8 @@ require("dotenv").config({ path: path.resolve(__dirname, '../.env') })
 const {
   getAllRestaurantsDocument,
   getRestaurantDocument,
-  deleteRestaurantDocument
+  deleteRestaurantDocument,
+  register
 } = require('../models/Restaurant')
 
 const {
@@ -17,9 +18,6 @@ const {
 const {
   getRestaurantAllOrders
 } = require('../models/Order')
-
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
 
 const getAllRestaurants = async (req, res) => {
   const restaurants = await getAllRestaurantsDocument()
@@ -61,62 +59,15 @@ const deleteRestaurant = async (req, res) => {
   res.status(200).json(restaurant)
 }
 
-// const registerRestaurant = async (req, res) => {
-//   const { 
-//     name, 
-//     ownerName, 
-//     email,  
-//     password, 
-//     phone, 
-//     pocDesignation, 
-//     address, 
-//     landmark, 
-//     city, 
-//     country, 
-//     postalCode, 
-//     latitude, 
-//     longitude,
-//     cuisines, 
-//     isRestaurantVeg
-//   } = req.body
+const registerRestaurant = async (req, res) => {
+  const savedRestaurant = await register(req)
 
-//   try {
-//     const salt = await bcrypt.genSalt()
-//     const passwordHash = await bcrypt.hash(password, salt)
-
-//     const newRestaurant = new Restaurant({
-//       name,
-//       ownername: ownerName,
-//       email,
-//       phone, 
-//       pocDesignation,
-//       password: passwordHash,
-//       cuisines,
-//       outlet: {
-//         address,
-//         landmark,
-//         city,
-//         country,
-//         postalCode,
-//         coordinate: {
-//           latitude,
-//           longitude
-//         }
-//       },
-//       isRestaurantVeg
-//     })
-
-//     const savedRestaurant = await newRestaurant.save()
-
-//     // const id = { id: savedRestaurant._id }
-//     // const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
-
-//     res.status(201).json(savedRestaurant)
-
-//   } catch (err) {
-//     res.status(500).json({ error: err.message })
-//   }
-// }
+  if(savedRestaurant.error) {
+    return res.status(500).json(savedRestaurant)
+  }
+    
+  res.status(201).json(savedRestaurant)
+}
 
 // const loginRestaurant = async (req, res) => {
 //   const { email, password } = req.body
@@ -328,7 +279,7 @@ module.exports = {
   getAllRestaurants,
   getRestaurant,
   deleteRestaurant,
-  // registerRestaurant,
+  registerRestaurant,
   getAllItems,
   addItem,
   updateItem,
