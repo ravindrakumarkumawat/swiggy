@@ -81,7 +81,7 @@ const getAllRestaurantsDocument = async () => {
 const getRestaurantDocument = async (id) => {
   try {
     const restaurant = await Restaurant.findOne({ _id: id })
-    console.log(restaurant)
+    
     if(!restaurant) {
       return {
         message: 'Restaurant not found'
