@@ -50,6 +50,19 @@ const getAllCustomersDocument = async () => {
   }
 }
 
+const getCustomer = async (id) => {
+  try {
+    const customer = await Customer.findOne({ _id: id })
+
+    if(!customer) {
+      return { message: "Customer doesn't exist" }
+    }
+    return customer
+  } catch(err) {
+    return { error: err.message }
+  }
+}
+
 const addCustomerDocument = async (req) => {
   const { 
     name, 
@@ -112,6 +125,7 @@ const deleteCustomerDocument = async (id) => {
 
 module.exports = {
   getAllCustomersDocument,
+  getCustomer,
   addCustomerDocument,
   updateCustomerDocument,
   deleteCustomerDocument

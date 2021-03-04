@@ -117,8 +117,23 @@ const getRestaurantAllOrders = async (id) => {
   }
 }
 
+const getCustomerAllOrders = async (id) => {
+  try {
+    const orders = await Order.find({ customerId: id })
+  
+    if(!orders) {
+      return { message: "Order doesn't exist" }
+    }
+
+    return orders
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
 module.exports = {
-  getRestaurantAllOrders
+  getRestaurantAllOrders,
+  getCustomerAllOrders
 }
 
 

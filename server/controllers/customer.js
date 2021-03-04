@@ -1,13 +1,16 @@
 const { 
   getAllCustomersDocument,
+  getCustomer,
   addCustomerDocument,
   updateCustomerDocument,
   deleteCustomerDocument
 } = require('../models/Customer')
 
 const Restaurant = require('../models/Restaurant')
-const Order = require('../models/Order')
-const bcrypt = require('bcrypt')
+
+const {
+  getCustomerAllOrders
+} = require('../models/Order')
 
 const getAllCustomers = async (req, res) => {
   const customers = await getAllCustomersDocument()
@@ -58,18 +61,30 @@ const deleteCustomer = async (req, res) => {
   res.status(200).json(customer)
 }
 
-// const getAllOrders = async (req, res) => {
-//   const { id } = req.params
+const getAllOrders = async (req, res) => {
+  const { id } = req.params
+  const customer = await getCustomer(id)
+ 
+  if(customer.error) {
+    return res.status(500).json(customer)
+  }
 
-//   try {
-//     const orders = await Order.find({ customerId: id})
-    
-//     res.status(200).json(orders)
+  if(customer.message) {
+    return res.status(404).json(customer)
+  }
+  
+  const orders = await getCustomerAllOrders(id) 
+  
+  if(orders.message) {
+    return res.status(404).json(order)
+  }
 
-//   } catch (err) {
-//     res.status(500).json({ error: err.message })
-//   }
-// }
+  if(orders.error) {
+    return res.status(500).json(orders)
+  }
+
+  res.status(200).json(orders)
+}
 
 // const addOrder = async (req, res) => {
 //   const { id } = req.params
@@ -128,6 +143,6 @@ module.exports = {
   addCustomer,
   updateCustomer,
   deleteCustomer,
-  // getAllOrders,
+  getAllOrders,
   // addOrder
 }
