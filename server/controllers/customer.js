@@ -6,10 +6,11 @@ const {
   deleteCustomerDocument
 } = require('../models/Customer')
 
-const Restaurant = require('../models/Restaurant')
+const { getRestaurantDocument } = require('../models/Restaurant')
 
 const {
-  getCustomerAllOrders
+  getCustomerAllOrders,
+  addCustomerOrder
 } = require('../models/Order')
 
 const getAllCustomers = async (req, res) => {
@@ -64,7 +65,7 @@ const deleteCustomer = async (req, res) => {
 const getAllOrders = async (req, res) => {
   const { id } = req.params
   const customer = await getCustomer(id)
- 
+
   if(customer.error) {
     return res.status(500).json(customer)
   }
@@ -86,57 +87,37 @@ const getAllOrders = async (req, res) => {
   res.status(200).json(orders)
 }
 
-// const addOrder = async (req, res) => {
-//   const { id } = req.params
+const addOrder = async (req, res) => {
+  const { id } = req.params
+  const { restaurantId } = req.body
 
-//   const {
-//     items, 
-//     request, 
-//     totalPrice, 
-//     restaurantId, 
-//     address,
-//     landmark,
-//     city,
-//     country,
-//     postalCode,
-//     latitude,
-//     longitude 
-//   } = req.body
+  const customer = await getCustomer(id)
 
-//   try {
-//     const restaurant = await Restaurant.findOne({_id: restaurantId})
+  if(customer.error) {
+    return res.status(500).json(customer)
+  }
 
-//     if(!restaurant) {
-//       return res.status(404).json({ error: "Restaurant does not exist"})
-//     }
+  if(customer.message) {
+    return res.status(404).json(customer)
+  }
 
-//     const createOrder = await Order.create({ 
-//       items,
-//       request,
-//       totalPrice,
-//       restaurantId: mongoose.Types.ObjectId(restaurantId),
-//       customerId: mongoose.Types.ObjectId(id),
-//       deliveryAddress: {
-//         address,
-//         landmark,
-//         city,
-//         country,
-//         postalCode,
-//         coordinate: {
-//           latitude,
-//           longitude
-//         }
-//       }
-//     })
+  const restaurant = await getRestaurantDocument(restaurantId)
 
-//     restaurant.orders.push(createOrder._id)
-//     await restaurant.save()
+  if(restaurant.message) {
+    return res.status(404).json(restaurant)
+  }
 
-//     res.status(201).json(createOrder)
-//   } catch (err) {
-//     res.status(500).json({ error: err.message })
-//   }
-// }
+  if(restaurant.error) {
+    return res.status(500).json(restaurant)
+  }
+
+  const createOrder = await addCustomerOrder(req, restaurant)
+  
+  if(createOrder.error) {
+    res.status(500).json(createOrder)
+  }
+  res.status(201).json(createOrder)
+}
 
 module.exports = {
   getAllCustomers,
@@ -144,5 +125,5 @@ module.exports = {
   updateCustomer,
   deleteCustomer,
   getAllOrders,
-  // addOrder
+  addOrder
 }

@@ -131,9 +131,56 @@ const getCustomerAllOrders = async (id) => {
   }
 }
 
+const addCustomerOrder = async (req, restaurant) => {
+  const { id } = req.params
+
+  const {
+    items, 
+    request, 
+    totalPrice, 
+    restaurantId, 
+    address,
+    landmark,
+    city,
+    country,
+    postalCode,
+    latitude,
+    longitude 
+  } = req.body
+
+  try {
+    const createOrder = await Order.create({ 
+      items,
+      request,
+      totalPrice,
+      restaurantId: mongoose.Types.ObjectId(restaurantId),
+      customerId: mongoose.Types.ObjectId(id),
+      deliveryAddress: {
+        address,
+        landmark,
+        city,
+        country,
+        postalCode,
+        coordinate: {
+          latitude,
+          longitude
+        }
+      }
+    })
+
+    restaurant.orders.push(createOrder._id)
+    await restaurant.save()
+
+    return createOrder
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
 module.exports = {
   getRestaurantAllOrders,
-  getCustomerAllOrders
+  getCustomerAllOrders,
+  addCustomerOrder
 }
 
 

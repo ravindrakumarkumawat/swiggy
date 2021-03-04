@@ -52,7 +52,7 @@ const getAllCustomersDocument = async () => {
 
 const getCustomer = async (id) => {
   try {
-    const customer = await Customer.findOne({ _id: id })
+    const customer = await Customer.find({ _id: id })
 
     if(!customer) {
       return { message: "Customer doesn't exist" }
