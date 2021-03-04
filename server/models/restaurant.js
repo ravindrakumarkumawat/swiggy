@@ -84,13 +84,7 @@ const getRestaurantDocument = async (id) => {
   try {
     const restaurant = await Restaurant.findOne({ _id: id })
     
-    if(!restaurant) {
-      return {
-        message: 'Restaurant not found'
-      }
-    }
-
-    return restaurant
+    return !restaurant ? { message: 'Restaurant not found' } : restaurant
   } catch (err) {
     return { error: err.message }
   }
@@ -100,11 +94,7 @@ const deleteRestaurantDocument = async (id) => {
   try {
     const restaurant = await Restaurant.findOneAndDelete({ _id: id })
 
-    if (!restaurant) {
-      return { message: "Restaurant not found" }
-    }
-    
-  return { deleted: true }
+    return !restaurant ? { message: 'Restaurant not found' } : { deleted: true }
   } catch(err) {
     return { error: err.message }
   }
