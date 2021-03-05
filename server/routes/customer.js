@@ -3,7 +3,7 @@ const router = express.Router()
 
 const {
   getAllCustomers,
-  addCustomer,
+  registerCustomer,
   updateCustomer,
   deleteCustomer,
   getAllOrders,
@@ -11,7 +11,7 @@ const {
 } = require('../controllers/customer')
 
 router.get('/', getAllCustomers)
-router.post('/', addCustomer)
+router.post('/', registerCustomer)
 router.patch('/:id', updateCustomer)
 router.delete('/:id', deleteCustomer)
 

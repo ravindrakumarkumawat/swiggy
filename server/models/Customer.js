@@ -4,6 +4,7 @@ const { ObjectId } = mongoose.Schema.Types
 const addressSchema = require("./AddressSchema")
 const bcrypt = require('bcrypt')
 const { generateHashPassword } = require('../utils/generateHashPassword')
+const { createJWTToken } = require('../libs/auth')
 
 const customerSchema = new mongoose.Schema({
   name: {
@@ -64,7 +65,7 @@ const getCustomer = async (id) => {
   }
 }
 
-const addCustomerDocument = async (req) => {
+const register = async (req) => {
   const { 
     name, 
     email,
@@ -75,14 +76,17 @@ const addCustomerDocument = async (req) => {
   try {
     const passwordHash = await generateHashPassword(password)
 
-    const savedCustomer = await Customer.create({
+    const customer = await Customer.create({
       name, 
       email,
       password: passwordHash,
       phone
     })
 
-    return savedCustomer
+    const payload = { id: customer._id }
+    const accessToken = createJWTToken(payload)
+
+    return { customer, accessToken }
   } catch (err) {
     return { error: err.message }
   }
@@ -126,7 +130,7 @@ const deleteCustomerDocument = async (id) => {
 module.exports = {
   getAllCustomersDocument,
   getCustomer,
-  addCustomerDocument,
+  register,
   updateCustomerDocument,
   deleteCustomerDocument
 }
