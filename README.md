@@ -1,12 +1,25 @@
 # Swiggyi - Backend
 
-<p>Swiggyi is the <b>online food ordering</b> and <b>delivery plateform</b>. In this I am creating the API's for Restaurant Partner, Customer, Order, and Delivery Partner.</p>
+<p>Swiggyi is an <b>online food ordering</b> and <b>delivery platform</b>. In this I am creating the API's for Restaurant Partner, Customer, Order, and Delivery Partner.</p>
 
 ## API
 
 ### 1. Restaurant
 
 <ol>
+
+  <li>
+    <code>registerRestaurant</code>
+
+    POST http://localhost:3001/api/restaurants/register 
+  </li>
+
+  <li>
+    <code>loginRestaurant</code>
+
+    POST http://localhost:3001/api/restaurants/login 
+  </li>
+  
   <li>
     <code>getAllRestaurants</code>
 
@@ -84,9 +97,15 @@
   </li>
 
   <li>
-    <code>addCutomer / Register</code><br>
+    <code>registerCustomer</code>
 
-    POST http://localhost:3001/api/customers
+    POST http://localhost:3001/api/customers/register 
+  </li>
+
+  <li>
+    <code>loginCustomer</code>
+
+    POST http://localhost:3001/api/customers/login 
   </li>
 
   <li>
@@ -130,9 +149,15 @@
   </li>
 
   <li>
-    <code>addDeliveryPartner / Register</code><br>
+    <code>registerDeliveryPartner</code>
 
-    POST http://localhost:3001/api/deliverypartners 
+    POST http://localhost:3001/api/deliverypartners/register 
+  </li>
+
+  <li>
+    <code>loginDeliveryPartner</code>
+
+    POST http://localhost:3001/api/deliverypartners/login 
   </li>
 
   <li>
