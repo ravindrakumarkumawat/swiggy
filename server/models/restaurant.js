@@ -1,11 +1,15 @@
 const path = require('path')
 const mongoose = require("mongoose")
-const { ROLE } = require("../utils/Role")
 const { ObjectId } = mongoose.Schema.Types
-const addressSchema = require('./AddressSchema')
-const { generateHashPassword, comparePassword } = require('../utils/generateHashPassword')
-const jwt = require('jsonwebtoken')
+
 require("dotenv").config({ path: path.resolve(__dirname, '../.env') })
+const addressSchema = require('./AddressSchema')
+const { createJWTToken } = require('../libs/auth')
+const { ROLE } = require("../utils/Role")
+const { 
+  generateHashPassword, 
+  comparePassword 
+} = require('../utils/generateHashPassword')
 
 const restaurantSchema = new mongoose.Schema({
   name: {
@@ -148,8 +152,8 @@ const register = async (req) => {
 
     const restaurant = await newRestaurant.save()
     
-    const id = { id: restaurant._id }
-    const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
+    const payload = { id: restaurant._id }
+    const accessToken = createJWTToken(payload)
     
     return { restaurant, accessToken }
   } catch(err) {
@@ -170,7 +174,7 @@ const login = async (req) => {
     const restaurant = await Restaurant.findOne({ email })
     
     if(!restaurant) {
-      return { message: 'Restaurant not found' }
+      return { message: 'Email is not registered' }
     }
     
     const isMatch = await comparePassword(password, restaurant.password)
@@ -179,8 +183,8 @@ const login = async (req) => {
       return { message: 'Incorrect Password' }
     }
 
-    const id = { id: restaurant._id }
-    const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
+    const payload = { id: restaurant._id }
+    const accessToken = createJWTToken(payload)
 
     return { restaurant, accessToken}
   } catch (err) {
