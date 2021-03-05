@@ -3,7 +3,7 @@ const { ROLE } = require("../utils/Role")
 const { ObjectId } = mongoose.Schema.Types
 const addressSchema = require("./AddressSchema")
 const bcrypt = require('bcrypt')
-const { generateHashPassword } = require('../utils/generateHashPassword')
+const { generateHashPassword, comparePassword } = require('../utils/generateHashPassword')
 const { createJWTToken } = require('../libs/auth')
 
 const customerSchema = new mongoose.Schema({
@@ -127,10 +127,42 @@ const deleteCustomerDocument = async (id) => {
   }
 }
 
+const login = async (req) => {
+  const { email, password } = req.body
+
+  try {
+    if (!email || !password) {
+      return { 
+        message: !email && password ? 'Enter registered email' : email && !password ? 'Enter password' : 'Enter email and password'
+      }
+    }
+
+    const customer = await Customer.findOne({ email })
+    
+    if(!customer) {
+      return { message: 'Email is not registered' }
+    }
+    
+    const isMatch = await comparePassword(password, customer.password)
+    
+    if (!isMatch) {
+      return { message: 'Incorrect Password' }
+    }
+
+    const payload = { id: customer._id }
+    const accessToken = createJWTToken(payload)
+
+    return { customer, accessToken}
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
 module.exports = {
   getAllCustomersDocument,
   getCustomer,
   register,
+  login,
   updateCustomerDocument,
   deleteCustomerDocument
 }
