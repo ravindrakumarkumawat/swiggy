@@ -7,6 +7,7 @@ const {
   getRestaurant,
   deleteRestaurant,
   registerRestaurant,
+  loginRestaurant,
   getAllItems,
   addItem,
   updateItem,
@@ -22,10 +23,7 @@ router.get('/', getAllRestaurants)
 router.get('/:id', getRestaurant)
 router.delete('/:id', deleteRestaurant)
 router.post('/register', registerRestaurant)
-
-// router.post('/login', ()=> {
-//   console.log('Login restaurant')
-// })
+router.post('/login', loginRestaurant)
 
 // router.put('/:id', ()=> {
 //   console.log('Updating something in restaurant')

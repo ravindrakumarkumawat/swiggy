@@ -5,7 +5,8 @@ const {
   getAllRestaurantsDocument,
   getRestaurantDocument,
   deleteRestaurantDocument,
-  register
+  register,
+  login
 } = require('../models/Restaurant')
 
 const {
@@ -69,43 +70,19 @@ const registerRestaurant = async (req, res) => {
   res.status(201).json(savedRestaurant)
 }
 
-// const loginRestaurant = async (req, res) => {
-//   const { email, password } = req.body
+const loginRestaurant = async (req, res) => {
+  const restaurant = await login(req)
 
-//   try {
-//     // Authenticate restaurant
+  if(restaurant.error) {
+    return res.status(500).json(restaurant)
+  }
 
-//     if(!email || !password) {
-//       return res.status(400).json({
-//         message: !email? 'Enter register email' : !password ? 'Enter password' : 'Enter email and password'
-//       })
-//     }
+  if(restaurant.message) {
+    return res.status(400).json(restaurant)
+  }
 
-//     const restaurant = Restaurant.find({ email })
-//     if(!restaurant) {
-//       return res.status(400).json({
-//         message: 'Restaurant with this email is not registered'
-//       })
-//     }
-
-//     const isMatch = await bcrypt.compare(password, restaurant.password)
-//     if(!isMatch) {
-//       return res.status(400).json({
-//         message: 'Incorrect Password'
-//       })
-//     }
-    
-//     const id = { id: restaurant._id }
-//     const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
-//     res.status(200).json({
-//       accessToken,
-//       restaurant
-//     })
-
-//   } catch (err) {
-//     res.status(500).json({ error: err.message })
-//   }  
-// }
+  res.status(200).json(restaurant) 
+}
 
 const getAllItems = async (req, res) => {
   const { id } = req.params
@@ -280,6 +257,7 @@ module.exports = {
   getRestaurant,
   deleteRestaurant,
   registerRestaurant,
+  loginRestaurant,
   getAllItems,
   addItem,
   updateItem,

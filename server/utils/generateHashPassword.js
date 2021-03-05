@@ -2,4 +2,6 @@ const bcrypt = require('bcrypt')
 
 const generateHashPassword = async (password) => bcrypt.hash(password, await bcrypt.genSalt())
 
-module.exports = { generateHashPassword }
+const comparePassword = async (password, restaurantPassword) => bcrypt.compare(password, restaurantPassword)
+
+module.exports = { generateHashPassword, comparePassword }
