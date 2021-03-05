@@ -1,19 +1,19 @@
-// require('dotenv').config()
+const { verifyJWTToken } = require('../libs/auth')
 
-// const jwt = require('jsonwebtoken')
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['Authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+  if (token == null) return res.sendStatus(401)
 
-// function authenticateToken(req, res, next) {
-//   const authHeader = req.headers['authorization']
-//   const token = authHeader && authHeader.split(' ')[1]
-//   if (token == null) return res.sendStatus(401)
-
-//   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, id) => {
-//     console.log(err)
-//     if (err) return res.sendStatus(403)
-//     req.id = id
-//     next()
-//   })
-// }
+  verifyJWTToken(token).then((decodedToken) =>
+  {
+    req.id = decodedToken.id
+    next()
+  }).catch((err) => {
+    res.status(403)
+      .json({message: "Invalid auth token provided."})
+  })
+}
 
 
-// module.exports = { authenticateToken }
+module.exports = { authenticateToken }
