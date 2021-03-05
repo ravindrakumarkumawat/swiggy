@@ -1,9 +1,11 @@
+const path = require('path')
 const mongoose = require("mongoose")
 const { ROLE } = require("../utils/Role")
 const { ObjectId } = mongoose.Schema.Types
 const addressSchema = require('./AddressSchema')
 const { generateHashPassword } = require('../utils/generateHashPassword')
 const jwt = require('jsonwebtoken')
+require("dotenv").config({ path: path.resolve(__dirname, '../.env') })
 
 const restaurantSchema = new mongoose.Schema({
   name: {
@@ -144,12 +146,12 @@ const register = async (req) => {
       isRestaurantVeg
     })
 
-    const savedRestaurant = await newRestaurant.save()
+    const restaurant = await newRestaurant.save()
     
-    // const id = { id: savedRestaurant._id }
-    // const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
-
-    return savedRestaurant
+    const id = { id: restaurant._id }
+    const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3 days'})
+    
+    return { restaurant, accessToken }
   } catch(err) {
     return { error: err.message }
   }
