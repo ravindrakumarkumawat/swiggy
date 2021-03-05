@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const { authenticateToken } = require('../middlewares/authenticateToken')
 
 const {
   getAllRestaurants,
@@ -20,7 +21,7 @@ const {
 
 router.get('/', getAllRestaurants)
 router.get('/:id', getRestaurant)
-router.delete('/:id', deleteRestaurant)
+router.delete('/:id', authenticateToken, deleteRestaurant)
 router.post('/register', registerRestaurant)
 router.post('/login', loginRestaurant)
 
