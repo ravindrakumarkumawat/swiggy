@@ -2,7 +2,6 @@ const mongoose = require("mongoose")
 const { ROLE } = require("../utils/Role")
 const { ObjectId } = mongoose.Schema.Types
 const addressSchema = require("./AddressSchema")
-const bcrypt = require('bcrypt')
 const { generateHashPassword, comparePassword } = require('../utils/generateHashPassword')
 const { createJWTToken } = require('../libs/auth')
 

@@ -1,6 +1,6 @@
 const { 
   getAllDeliveryPartnersDocument,
-  addDeliveryPartnerDocument,
+  register,
   updateDeliveryPartnerDocument,
   deleteDeliveryPartnerDocument 
 } = require('../models/DeliveryPartner')
@@ -15,8 +15,8 @@ const getAllDeliveryPartners = async (req, res) => {
   res.status(200).json(deliveryPartner)  
 }
 
-const addDeliveryPartner = async (req, res) => {
-  const savedDeliveryPartner = await addDeliveryPartnerDocument(req)
+const registerDeliveryPartner = async (req, res) => {
+  const savedDeliveryPartner = await register(req)
 
   if(savedDeliveryPartner.error) {
     return res.status(500).json(savedDeliveryPartner)
@@ -57,7 +57,7 @@ const deleteDeliveryPartner = async (req, res) => {
 
 module.exports = {
   getAllDeliveryPartners,
-  addDeliveryPartner,
+  registerDeliveryPartner,
   updateDeliveryPartner,
   deleteDeliveryPartner
 }

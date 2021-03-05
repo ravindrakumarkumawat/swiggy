@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
-const { ROLE } = require("../utils/Role");
-const bcrypt = require('bcrypt')
+const mongoose = require("mongoose")
+const { ROLE } = require("../utils/Role")
+const { generateHashPassword, comparePassword } = require('../utils/generateHashPassword')
+const { createJWTToken } = require('../libs/auth')
 
 const deliveryPartnerSchema = new mongoose.Schema({
   name: {
@@ -93,7 +94,7 @@ const getAllDeliveryPartnersDocument = async () => {
   }
 }
 
-const addDeliveryPartnerDocument = async (req) => {
+const register = async (req) => {
   const { 
     name,
     serviceArea,
@@ -106,10 +107,9 @@ const addDeliveryPartnerDocument = async (req) => {
   } = req.body
 
   try {
-    const salt = await bcrypt.genSalt()
-    const passwordHash = await bcrypt.hash(password, salt)
+    const passwordHash = await generateHashPassword(password)
 
-    const savedDeliveryPartner = await DeliveryPartner.create({
+    const deliveryPartner = await DeliveryPartner.create({
       name,
       serviceArea,
       city,
@@ -119,8 +119,11 @@ const addDeliveryPartnerDocument = async (req) => {
       phone,
       password: passwordHash
     })
+    
+    const payload = { id: deliveryPartner._id }
+    const accessToken = createJWTToken(payload)
 
-    return savedDeliveryPartner
+    return { deliveryPartner, accessToken }
   } catch (err) {
     return { error: err.message }
   }
@@ -159,7 +162,7 @@ const deleteDeliveryPartnerDocument = async (id) => {
 
 module.exports = {
   getAllDeliveryPartnersDocument,
-  addDeliveryPartnerDocument,
+  register,
   updateDeliveryPartnerDocument,
   deleteDeliveryPartnerDocument
 }
