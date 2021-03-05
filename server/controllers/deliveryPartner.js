@@ -1,6 +1,7 @@
 const { 
   getAllDeliveryPartnersDocument,
   register,
+  login,
   updateDeliveryPartnerDocument,
   deleteDeliveryPartnerDocument 
 } = require('../models/DeliveryPartner')
@@ -23,6 +24,20 @@ const registerDeliveryPartner = async (req, res) => {
   }
 
   res.status(201).json(savedDeliveryPartner)
+}
+
+const loginDeliveryPartner  = async (req, res) => {
+  const deliveryPartner = await login(req)
+
+  if(deliveryPartner.error) {
+    return res.status(500).json(deliveryPartner)
+  }
+
+  if(deliveryPartner.message) {
+    return res.status(400).json(deliveryPartner)
+  }
+
+  res.status(200).json(deliveryPartner) 
 }
 
 const updateDeliveryPartner = async (req, res) => {
@@ -58,6 +73,7 @@ const deleteDeliveryPartner = async (req, res) => {
 module.exports = {
   getAllDeliveryPartners,
   registerDeliveryPartner,
+  loginDeliveryPartner,
   updateDeliveryPartner,
   deleteDeliveryPartner
 }

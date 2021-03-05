@@ -119,11 +119,42 @@ const register = async (req) => {
       phone,
       password: passwordHash
     })
-    
+
     const payload = { id: deliveryPartner._id }
     const accessToken = createJWTToken(payload)
 
     return { deliveryPartner, accessToken }
+  } catch (err) {
+    return { error: err.message }
+  }
+}
+
+const login = async (req) => {
+  const { email, password } = req.body
+
+  try {
+    if (!email || !password) {
+      return { 
+        message: !email && password ? 'Enter registered email' : email && !password ? 'Enter password' : 'Enter email and password'
+      }
+    }
+
+    const deliveryPartner = await DeliveryPartner.findOne({ email })
+    
+    if(!deliveryPartner) {
+      return { message: 'Email is not registered' }
+    }
+    
+    const isMatch = await comparePassword(password, deliveryPartner.password)
+    
+    if (!isMatch) {
+      return { message: 'Incorrect Password' }
+    }
+
+    const payload = { id: deliveryPartner._id }
+    const accessToken = createJWTToken(payload)
+
+    return { deliveryPartner, accessToken}
   } catch (err) {
     return { error: err.message }
   }
@@ -163,6 +194,7 @@ const deleteDeliveryPartnerDocument = async (id) => {
 module.exports = {
   getAllDeliveryPartnersDocument,
   register,
+  login,
   updateDeliveryPartnerDocument,
   deleteDeliveryPartnerDocument
 }
