@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
+    <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-left space-x-4">
         <div className="flex-shrink-0">
           <img className="h-12 w-12" src="/img/logo.svg" alt="ChitChat Logo" />
         </div>
