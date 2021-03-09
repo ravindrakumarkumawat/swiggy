@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navbar = ({ toggle }) => {
   return (
     <nav className="flex justify-between items-center h-20 bg-white font-semibold shadow-md font-arial" role="navigation">
-      <Link to="/" className="pl-16">
+      <Link to="/" className="mx-12">
         logo
       </Link>
       <div className="px-4 cursor-pointer md:hidden" onClick={toggle}>
