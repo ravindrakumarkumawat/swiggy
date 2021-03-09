@@ -31,7 +31,7 @@ function App() {
       <Dropdown isOpen={isOpen} toggle={toggle}/>
       <Switch>
         <Route exact path="/"><Redirect to="/restaurants" /></Route>
-        <Route path="/restaurants"><h1>Home Page</h1></Route>
+        <Route path="/restaurants"><div className="text-red-500">Home Page</div></Route>
         <Route path="/search"><h1>Search</h1></Route>
         <Route path="/offers/restaurant"><h1>Offers</h1></Route>
         <Route path="/support"><h1>Help</h1></Route>

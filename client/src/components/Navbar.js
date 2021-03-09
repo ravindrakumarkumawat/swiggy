@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Navbar = ({ toggle }) => {
   return (
-    <nav className="flex justify-between items-center h-16 bg-white text-black relative shadow-sm font-mono" role="navigation">
-      <Link to="/" className="pl-8">
+    <nav className="flex justify-between items-center h-20 bg-white font-semibold shadow-md font-arial" role="navigation">
+      <Link to="/" className="pl-16">
         logo
       </Link>
       <div className="px-4 cursor-pointer md:hidden" onClick={toggle}>
@@ -23,12 +23,12 @@ const Navbar = ({ toggle }) => {
           />
         </svg>
       </div>
-      <div className="pr-8 md:block hidden">
-        <Link to="/search" className="p-4">Search</Link>
-        <Link to="/offers/restaurant" className="p-4">Offers</Link>
-        <Link to="/support" className="p-4">Help</Link>
-        <Link to="/my-account" className="p-4">Ravindra</Link>
-        <Link to="/checkout" className="p-4">Cart</Link>
+      <div className="pr-16 md:block hidden">
+        <Link to="/search" className="p-4 text-gray-500 hover:text-green-500">Search</Link>
+        <Link to="/offers/restaurant" className="p-4 text-gray-500 hover:text-green-500">Offers</Link>
+        <Link to="/support" className="p-4 text-gray-500 hover:text-green-500">Help</Link>
+        <Link to="/my-account" className="p-4 text-gray-500 hover:text-green-500">Ravindra</Link>
+        <Link to="/checkout" className="p-4 text-gray-500 hover:text-green-500">Cart</Link>      
       </div>
     </nav>
   );
