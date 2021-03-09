@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Dropdown from './components/Dropdown';
 import {Switch, Route, Redirect} from 'react-router-dom'
+import Home from './pages/Home';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -31,7 +32,7 @@ function App() {
       <Dropdown isOpen={isOpen} toggle={toggle}/>
       <Switch>
         <Route exact path="/"><Redirect to="/restaurants" /></Route>
-        <Route path="/restaurants"><div className="text-red-500">Home Page</div></Route>
+        <Route path="/restaurants"><Home /></Route>
         <Route path="/search"><h1>Search</h1></Route>
         <Route path="/offers/restaurant"><h1>Offers</h1></Route>
         <Route path="/support"><h1>Help</h1></Route>
