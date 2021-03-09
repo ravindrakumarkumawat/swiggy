@@ -3,17 +3,34 @@ import Image1 from "../images/image1.jpg";
 import Image2 from "../images/image2.jpg";
 import Image3 from "../images/image3.jpg";
 import Image4 from "../images/image4.jpg";
+import Food from "../images/food.jpg";
 
 const Home = () => {
   return (
     <>
       <div className="flex flex-row justify-evenly bg-yellow-300 h-85 max-h-1200 min-h-1200">
-        <img src={Image1} className="h-64 w-64 m-6" alt="image1" />
-        <img src={Image2} className="h-64 w-64 m-6" alt="image2" />
-        <img src={Image3} className="h-64 w-64 m-6" alt="image3" />
-        <img src={Image4} className="h-64 w-64 m-6" alt="image4" />
+        <img
+          src={Image1}
+          className="h-64 w-64 m-6 cursor-pointer"
+          alt="image1"
+        />
+        <img
+          src={Image2}
+          className="h-64 w-64 m-6 cursor-pointer"
+          alt="image2"
+        />
+        <img
+          src={Image3}
+          className="h-64 w-64 m-6 cursor-pointer"
+          alt="image3"
+        />
+        <img
+          src={Image4}
+          className="h-64 w-64 m-6 cursor-pointer"
+          alt="image4"
+        />
       </div>
-      <div className="grid grid-cols-2">
+      <div className="flex">
         <div className="bg-white border-2 w-64 shadow-md mx-12 py-7 cursor-pointer">
           <div className="flex flex-row p-3 hover:bg-yellow-500 text-yellow-500 hover:text-white">
             <div>
@@ -112,7 +129,22 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div>Something to load</div>
+        <div className="mx-5 my-16 border-2">
+          <div className="">
+            <div className="font-semibold text-3xl text-gray-900">Top Picks</div>
+            <div className="grid grid-cols-3">
+              <div className="bg-white w-64 h-40 relative">
+                <img src={Food} alt="food1" />
+              </div>
+              <div className="bg-white w-64 h-40 relative">
+                <img src={Food} alt="food1" />
+              </div>
+              <div className="bg-white w-64 h-40 relative">
+                <img src={Food} alt="food1" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
