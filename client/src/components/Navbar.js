@@ -24,11 +24,11 @@ const Navbar = ({ toggle }) => {
         </svg>
       </div>
       <div className="pr-16 md:block hidden">
-        <Link to="/search" className="p-4 text-gray-500 hover:text-green-500">Search</Link>
-        <Link to="/offers/restaurant" className="p-4 text-gray-500 hover:text-green-500">Offers</Link>
-        <Link to="/support" className="p-4 text-gray-500 hover:text-green-500">Help</Link>
-        <Link to="/my-account" className="p-4 text-gray-500 hover:text-green-500">Ravindra</Link>
-        <Link to="/checkout" className="p-4 text-gray-500 hover:text-green-500">Cart</Link>      
+        <Link to="/search" className="p-4 text-gray-500 hover:text-yellow-500">Search</Link>
+        <Link to="/offers/restaurant" className="p-4 text-gray-500 hover:text-yellow-500">Offers</Link>
+        <Link to="/support" className="p-4 text-gray-500 hover:text-yellow-500">Help</Link>
+        <Link to="/my-account" className="p-4 text-gray-500 hover:text-yellow-500">Ravindra</Link>
+        <Link to="/checkout" className="p-4 text-gray-500 hover:text-yellow-500">Cart</Link>      
       </div>
     </nav>
   );

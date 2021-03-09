@@ -15,7 +15,7 @@ const Home = () => {
       </div>
       <div className="grid grid-cols-2">
         <div className="bg-white border-2 w-64 shadow-md mx-12 py-7 cursor-pointer">
-          <div className="flex flex-row p-3 hover:bg-green-500 text-green-500 hover:text-white">
+          <div className="flex flex-row p-3 hover:bg-yellow-500 text-yellow-500 hover:text-white">
             <div>
               <svg
                 className="h-12 w-12"
@@ -35,7 +35,7 @@ const Home = () => {
               <p className="font-light text-xs">122 OPTIONS</p>
             </div>
           </div>
-          <div className="flex flex-row p-3 hover:bg-green-500 text-green-500 hover:text-white">
+          <div className="flex flex-row p-3 hover:bg-yellow-500 text-yellow-500 hover:text-white">
             <div>
               <svg
                 className="h-12 w-12"
@@ -55,7 +55,7 @@ const Home = () => {
               <p className="font-light text-xs">122 OPTIONS</p>
             </div>
           </div>
-          <div className="flex flex-row p-3 hover:bg-green-500 text-green-500 hover:text-white">
+          <div className="flex flex-row p-3 hover:bg-yellow-500 text-yellow-500 hover:text-white">
             <div>
               <svg
                 className="h-12 w-12"
@@ -71,7 +71,7 @@ const Home = () => {
               <p className="font-light text-xs">122 OPTIONS</p>
             </div>
           </div>
-          <div className="flex flex-row p-3 hover:bg-green-500 text-green-500 hover:text-white">
+          <div className="flex flex-row p-3 hover:bg-yellow-500 text-yellow-500 hover:text-white">
             <div>
               <svg
                 className="h-12 w-12"
@@ -91,7 +91,7 @@ const Home = () => {
               <p className="font-light text-xs">122 OPTIONS</p>
             </div>
           </div>
-          <div className="flex flex-row p-3 hover:bg-green-500 text-green-500 hover:text-white">
+          <div className="flex flex-row p-3 hover:bg-yellow-500 text-yellow-500 hover:text-white">
             <div>
               <svg
                 className="h-12 w-12"
