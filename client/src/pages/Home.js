@@ -129,18 +129,92 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="mx-5 my-16 border-2">
+        <div className="mx-5 my-16">
           <div className="">
-            <div className="font-semibold text-3xl text-gray-900">Top Picks</div>
-            <div className="grid grid-cols-3">
-              <div className="bg-white w-64 h-40 relative">
-                <img src={Food} alt="food1" />
+            <div className="font-semibold text-3xl text-gray-900">
+              Top Picks
+            </div>
+            <div className="grid grid-cols-3 py-12 gap-8">
+              <div className="w-72 bg-white cursor-pointer border-2 border-white hover:border-gray-200 hover:shadow-md p-3.5">
+                <div className="w-64 h-40">
+                  <img src={Food} alt="food1" />
+                </div>
+                <div className="">
+                  <div>Lunch Box</div>
+                  <div>North Indian, Desserts, Biryani</div>
+                </div>
+                <div className="">
+                  <div classNamae="">
+                    <span className="">*</span>
+                    <span>4.2</span>
+                  </div>
+                  <div>•</div>
+                  <div>29 MINS</div>
+                  <div>•</div>
+                  <div className="">₹200 FOR TWO</div>
+                </div>
+                <div className="">
+                  <span className=""></span>
+                  <span className="">50% off | Use SWIGGYIT</span>
+                </div>
+                <div className="">
+                  <span className=""></span>
+                  <span className="">Flat ₹30 Paytm Cashback</span>
+                </div>
               </div>
-              <div className="bg-white w-64 h-40 relative">
-                <img src={Food} alt="food1" />
+              <div className="w-72 bg-white cursor-pointer border-2 border-white hover:border-gray-200 hover:shadow-md p-3.5">
+                <div className="w-64 h-40">
+                  <img src={Food} alt="food1" />
+                </div>
+                <div className="">
+                  <div>Lunch Box</div>
+                  <div>North Indian, Desserts, Biryani</div>
+                </div>
+                <div className="">
+                  <div classNamae="">
+                    <span className="">*</span>
+                    <span>4.2</span>
+                  </div>
+                  <div>•</div>
+                  <div>29 MINS</div>
+                  <div>•</div>
+                  <div className="">₹200 FOR TWO</div>
+                </div>
+                <div className="">
+                  <span className=""></span>
+                  <span className="">50% off | Use SWIGGYIT</span>
+                </div>
+                <div className="">
+                  <span className=""></span>
+                  <span className="">Flat ₹30 Paytm Cashback</span>
+                </div>
               </div>
-              <div className="bg-white w-64 h-40 relative">
-                <img src={Food} alt="food1" />
+              <div className="w-72 bg-white cursor-pointer border-2 border-white hover:border-gray-200 hover:shadow-md p-3.5">
+                <div className="w-64 h-40">
+                  <img src={Food} alt="food1" />
+                </div>
+                <div className="">
+                  <div>Lunch Box</div>
+                  <div>North Indian, Desserts, Biryani</div>
+                </div>
+                <div className="">
+                  <div classNamae="">
+                    <span className="">*</span>
+                    <span>4.2</span>
+                  </div>
+                  <div>•</div>
+                  <div>29 MINS</div>
+                  <div>•</div>
+                  <div className="">₹200 FOR TWO</div>
+                </div>
+                <div className="">
+                  <span className=""></span>
+                  <span className="">50% off | Use SWIGGYIT</span>
+                </div>
+                <div className="">
+                  <span className=""></span>
+                  <span className="">Flat ₹30 Paytm Cashback</span>
+                </div>
               </div>
             </div>
           </div>
