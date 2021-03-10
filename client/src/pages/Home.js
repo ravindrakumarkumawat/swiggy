@@ -31,7 +31,7 @@ const Home = () => {
         />
       </div>
       <div className="flex">
-        <div className="bg-white border-2 w-64 shadow-md mx-12 py-7 cursor-pointer">
+        <div className="bg-white border-2 w-64 h-4/6 shadow-md mx-12 py-7 cursor-pointer">
           <div className="flex flex-row p-3 hover:bg-yellow-500 text-yellow-500 hover:text-white">
             <div>
               <svg
@@ -139,12 +139,12 @@ const Home = () => {
                 <div className="w-64 h-40">
                   <img src={Food} alt="food1" />
                 </div>
-                <div className="">
-                  <div>Lunch Box</div>
-                  <div>North Indian, Desserts, Biryani</div>
+                <div className="my-3">
+                  <div className="text-gray-700 font-bold">Lunch Box</div>
+                  <div className="text-gray-500 font-md text-xs">North Indian, Desserts, Biryani</div>
                 </div>
-                <div className="">
-                  <div classNamae="">
+                <div className="flex justify-between my-3 text-gray-500 font-md text-xs">
+                  <div className="bg-green-500 text-white px-2">
                     <span className="">*</span>
                     <span>4.2</span>
                   </div>
@@ -153,11 +153,11 @@ const Home = () => {
                   <div>•</div>
                   <div className="">₹200 FOR TWO</div>
                 </div>
-                <div className="">
+                <div className="border-t-2 text-sm text-red-700 py-2">
                   <span className=""></span>
                   <span className="">50% off | Use SWIGGYIT</span>
                 </div>
-                <div className="">
+                <div className="text-sm text-red-700 py-0">
                   <span className=""></span>
                   <span className="">Flat ₹30 Paytm Cashback</span>
                 </div>
@@ -166,12 +166,12 @@ const Home = () => {
                 <div className="w-64 h-40">
                   <img src={Food} alt="food1" />
                 </div>
-                <div className="">
-                  <div>Lunch Box</div>
-                  <div>North Indian, Desserts, Biryani</div>
+                <div className="my-3">
+                  <div className="text-gray-700 font-bold">Lunch Box</div>
+                  <div className="text-gray-500 font-md text-xs">North Indian, Desserts, Biryani</div>
                 </div>
-                <div className="">
-                  <div classNamae="">
+                <div className="flex justify-between my-3 text-gray-500 font-md text-xs">
+                  <div className="bg-green-500 text-white px-2">
                     <span className="">*</span>
                     <span>4.2</span>
                   </div>
@@ -180,11 +180,11 @@ const Home = () => {
                   <div>•</div>
                   <div className="">₹200 FOR TWO</div>
                 </div>
-                <div className="">
+                <div className="border-t-2 text-sm text-red-700 py-2">
                   <span className=""></span>
                   <span className="">50% off | Use SWIGGYIT</span>
                 </div>
-                <div className="">
+                <div className="text-sm text-red-700 py-0">
                   <span className=""></span>
                   <span className="">Flat ₹30 Paytm Cashback</span>
                 </div>
@@ -193,12 +193,12 @@ const Home = () => {
                 <div className="w-64 h-40">
                   <img src={Food} alt="food1" />
                 </div>
-                <div className="">
-                  <div>Lunch Box</div>
-                  <div>North Indian, Desserts, Biryani</div>
+                <div className="my-3">
+                  <div className="text-gray-700 font-bold">Lunch Box</div>
+                  <div className="text-gray-500 font-md text-xs">North Indian, Desserts, Biryani</div>
                 </div>
-                <div className="">
-                  <div classNamae="">
+                <div className="flex justify-between my-3 text-gray-500 font-md text-xs">
+                  <div className="bg-green-500 text-white px-2">
                     <span className="">*</span>
                     <span>4.2</span>
                   </div>
@@ -207,11 +207,11 @@ const Home = () => {
                   <div>•</div>
                   <div className="">₹200 FOR TWO</div>
                 </div>
-                <div className="">
+                <div className="border-t-2 text-sm text-red-700 py-2">
                   <span className=""></span>
                   <span className="">50% off | Use SWIGGYIT</span>
                 </div>
-                <div className="">
+                <div className="text-sm text-red-700 py-0">
                   <span className=""></span>
                   <span className="">Flat ₹30 Paytm Cashback</span>
                 </div>
