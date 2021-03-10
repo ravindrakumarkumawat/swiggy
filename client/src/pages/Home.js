@@ -129,7 +129,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="mx-5 my-16">
+        <div className="mx-5 my-16 border-b-2 border-dashed">
           <div className="">
             <div className="font-semibold text-3xl text-gray-900">
               Top Picks
