@@ -9,7 +9,7 @@ const Slider = () => {
   return (
     <div className="flex flex-row justify-evenly bg-yellow-300 h-85 max-h-1200 min-h-1200">
       {
-        images.map((image) => <img src={image} className="h-64 w-64 m-6 cursor-pointer" alt="some description" />)
+        images.map((image) => <img key={image} src={image} className="h-64 w-64 m-6 cursor-pointer" alt="some description" />)
       }
     </div>
   );
