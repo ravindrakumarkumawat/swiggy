@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react'
 import './App.css';
-import Navbar from './components/Navbar';
-import Dropdown from './components/Dropdown';
+import Navbar from './components/Customer/Navbar';
+import Dropdown from './components/Customer/Dropdown';
 import {Switch, Route, Redirect} from 'react-router-dom'
 import Home from './pages/Home';
 

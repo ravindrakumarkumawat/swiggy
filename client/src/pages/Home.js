@@ -1,7 +1,7 @@
 import React from "react";
-import Slider from '../components/Slider'
-import SideNavbar from "../components/SideNavbar"
-import SideNavbarMenu from "../components/SideNavbarMenu"
+import Slider from '../components/Customer/Slider'
+import SideNavbar from "../components/Customer/SideNavbar"
+import SideNavbarMenu from "../components/Customer/SideNavbarMenu"
 
 const Home = () => {
   return (
