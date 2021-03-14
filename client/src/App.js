@@ -4,6 +4,7 @@ import Navbar from './components/Customer/Navbar';
 import Dropdown from './components/Customer/Dropdown';
 import {Switch, Route, Redirect} from 'react-router-dom'
 import Home from './pages/Home';
+import RestaurantNavbar from './components/RestaurantPartner/Navbar'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,7 +29,7 @@ function App() {
   })
   return (
     <>
-      <Navbar toggle={toggle}/>
+      {/*<Navbar toggle={toggle}/>
       <Dropdown isOpen={isOpen} toggle={toggle}/>
       <Switch>
         <Route exact path="/"><Redirect to="/restaurants" /></Route>
@@ -38,7 +39,14 @@ function App() {
         <Route path="/support"><h1>Help</h1></Route>
         <Route path="/my-account"><h1>My Account</h1></Route>
         <Route path="/checkout"><h1>Checkout</h1></Route>
-      </Switch>
+  </Switch>*/}
+        
+    <RestaurantNavbar />
+    <Switch>
+      <Route path="/restaurant-partner">
+        <div>Home of restaurant</div>
+      </Route>
+    </Switch>
     </>
   );
 }
