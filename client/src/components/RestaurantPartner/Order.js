@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 
 const OrderHeader = () => {
   return (
-    <div className="my-12 flex justify-between items-center text-gray-500 text-sm">
+    <div className="my-12 flex items-center text-gray-500 text-sm">
       
       <div>
         <div className="flex items-center">
@@ -124,16 +124,32 @@ const OrderHeader = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
+
+const OrderList = () => {  
+  return (
+    <div className="w-3/4 border-r-2 border-gray-100">OrderList</div>
+  )
+}
+
+const OrderDetail = () => {
+  return (
+    <div>OrderDetail</div>
+  )
+}
 
 const Order = () => {
   return (
     <div className="">
       <OrderHeader />
-      <div>Something content</div>
+      <div className="border-t-2 border-gray-200"></div>
+      <div className="my-12 flex items-center text-gray-500 text-sm">
+        <OrderList />
+        <OrderDetail />
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default Order;
+export default Order
