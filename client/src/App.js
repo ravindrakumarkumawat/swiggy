@@ -6,6 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom"
 import Home from "./pages/Home"
 import RestaurantNavbar from "./components/RestaurantPartner/Navbar"
 import Sidebar from "./components/RestaurantPartner/Sidebar"
+import Order from "./components/RestaurantPartner/Order"
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -49,7 +50,7 @@ function App() {
             <div>Home nnnnn</div>
           </Route>
           <Route path="/restaurant-partner/orders">
-            <div>Order</div>
+            <Order />
           </Route>
           <Route path="/restaurant-partner/menus">
             <div>Menu</div>

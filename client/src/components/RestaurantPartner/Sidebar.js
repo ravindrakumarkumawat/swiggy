@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Image1 from "../../images/image1.jpg";
+import Noodle from "../../images/noodle.png";
 
 const menuData = [
   {
@@ -150,7 +150,7 @@ const Sidebar = () => {
   return (
     <div className="w-64 h-screen bg-white text-sm">
       <div className="m-12">
-        <img className="h-42 w-42 rounded-full" src={Image1} alt="food plate" />
+        <img className="h-42 w-42 rounded-full" src={Noodle} alt="food plate" />
       </div>
       <div className="mx-12">
         <div className="text-gray-600">MENU</div>
