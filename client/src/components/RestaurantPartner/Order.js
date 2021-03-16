@@ -1,9 +1,8 @@
-import React from "react"
+import React from "react";
 
 const OrderHeader = () => {
   return (
     <div className="my-12 flex items-center text-gray-500 text-sm">
-      
       <div>
         <div className="flex items-center">
           <div className="text-gray-700 text-xl font-bold">Healthy Salad</div>
@@ -24,7 +23,7 @@ const OrderHeader = () => {
         </div>
         <div className="flex my-3">
           <div className="flex items-center">
-          <div>
+            <div>
               <svg
                 className="h-6 w-6"
                 xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +36,7 @@ const OrderHeader = () => {
             <div className="mx-2">Main Street no. 12</div>
           </div>
           <div className="flex items-center">
-          <div className="mx-2">
+            <div className="mx-2">
               <svg
                 className="h-6 w-6 text-green-600"
                 xmlns="http://www.w3.org/2000/svg"
@@ -124,32 +123,58 @@ const OrderHeader = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-const OrderList = () => {  
+const DataList = () => {
+  return <div>DataList</div>;
+};
+
+const OrderList = () => {
   return (
-    <div className="w-3/4 border-r-2 border-gray-100">OrderList</div>
-  )
-}
+    <div className="w-2/3 border-2 border-green-400">
+      <div className="my-12 flex justify-between items-center">
+        <div className="text-gray-700 text-xl font-bold">Food Order</div>
+        <button className="flex ring-1 ring-gray-300 shadow-md rounded-md p-2 mx-6 font-medium tracking-wide">
+          <div>
+            <svg
+              className="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+          <div>Filter Order</div>
+        </button>
+      </div>
+      <DataList />
+    </div>
+  );
+};
 
 const OrderDetail = () => {
   return (
-    <div>OrderDetail</div>
-  )
-}
+    <div className="my-12 w-1/3 border-2 border-green-400">OrderDetail</div>
+  );
+};
 
 const Order = () => {
   return (
     <div className="">
       <OrderHeader />
       <div className="border-t-2 border-gray-200"></div>
-      <div className="my-12 flex items-center text-gray-500 text-sm">
+      <div className="flex items-center text-gray-500 text-sm">
         <OrderList />
         <OrderDetail />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Order
+export default Order;
