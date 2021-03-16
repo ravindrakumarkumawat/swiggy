@@ -1,5 +1,6 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
+import Image1 from "../../images/image1.jpg";
 
 const menuData = [
   {
@@ -67,7 +68,7 @@ const menuData = [
       </svg>
     ),
   },
-]
+];
 
 const otherData = [
   {
@@ -143,33 +144,42 @@ const otherData = [
       </svg>
     ),
   },
-]
+];
 
 const Sidebar = () => {
   return (
-    <div className="w-64 h-screen bg-red-500">
-      <div>Image</div>
-      <div className="">
-        <div>MENU</div>
+    <div className="w-64 h-screen bg-white text-sm">
+      <div className="m-12">
+        <img className="h-42 w-42 rounded-full" src={Image1} alt="food plate" />
+      </div>
+      <div className="mx-12">
+        <div className="text-gray-600">MENU</div>
         {menuData.map((data) => (
-          <Link className="flex items-center" key={data.title} to={data.link}>
-            <div>{data.icon}</div>
+          <Link
+            className="flex items-center text-gray-700 hover:text-green-700 py-4 hover:bg-green-100 border-l-2 border-white hover:border-green-400"
+            key={data.title}
+            to={data.link}
+          >
+            <div className="px-2">{data.icon}</div>
             <div>{data.title}</div>
           </Link>
         ))}
       </div>
-      <div>
-        <div>OTHERS</div>
-
+      <div className="mx-12">
+        <div className="text-gray-600">OTHERS</div>
         {otherData.map((data) => (
-          <Link className="flex items-center" key={data.title} to={data.link}>
-            <div>{data.icon}</div>
+          <Link
+            className="flex items-center text-gray-700 hover:text-green-700 py-4 hover:bg-green-100 border-l-2 border-white hover:border-green-400"
+            key={data.title}
+            to={data.link}
+          >
+            <div className="px-2">{data.icon}</div>
             <div>{data.title}</div>
           </Link>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
