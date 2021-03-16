@@ -1,10 +1,11 @@
-import React, {useState, useEffect } from 'react'
-import './App.css';
-import Navbar from './components/Customer/Navbar';
-import Dropdown from './components/Customer/Dropdown';
-import {Switch, Route, Redirect} from 'react-router-dom'
-import Home from './pages/Home';
-import RestaurantNavbar from './components/RestaurantPartner/Navbar'
+import React, { useState, useEffect } from "react"
+import "./App.css"
+import Navbar from "./components/Customer/Navbar"
+import Dropdown from "./components/Customer/Dropdown"
+import { Switch, Route, Redirect } from "react-router-dom"
+import Home from "./pages/Home"
+import RestaurantNavbar from "./components/RestaurantPartner/Navbar"
+import Sidebar from "./components/RestaurantPartner/Sidebar"
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,17 +16,16 @@ function App() {
 
   useEffect(() => {
     const hideMenu = () => {
-      if(window.innerWidth > 768 && isOpen) {
+      if (window.innerWidth > 768 && isOpen) {
         setIsOpen(false)
       }
     }
 
-    window.addEventListener('resize', hideMenu) 
+    window.addEventListener("resize", hideMenu)
 
     return () => {
-      window.removeEventListener('resize', hideMenu)
+      window.removeEventListener("resize", hideMenu)
     }
-
   })
   return (
     <>
@@ -40,15 +40,39 @@ function App() {
         <Route path="/my-account"><h1>My Account</h1></Route>
         <Route path="/checkout"><h1>Checkout</h1></Route>
   </Switch>*/}
-        
-    <RestaurantNavbar />
-    <Switch>
-      <Route path="/restaurant-partner">
-        <div>Home of restaurant</div>
-      </Route>
-    </Switch>
+
+      <RestaurantNavbar />
+      <div className="flex">
+        <Sidebar />
+        <Switch>
+          <Route exact path="/restaurant-partner">
+            <div>Home nnnnn</div>
+          </Route>
+          <Route path="/restaurant-partner/orders">
+            <div>Order</div>
+          </Route>
+          <Route path="/restaurant-partner/menus">
+            <div>Menu</div>
+          </Route>
+          <Route path="/restaurant-partner/reviews">
+            <div>Review</div>
+          </Route>
+          <Route path="/restaurant-partner/settings">
+            <div>Settings</div>
+          </Route>
+          <Route path="/restaurant-partner/payments">
+            <div>Payments</div>
+          </Route>
+          <Route path="/restaurant-partner/accounts">
+            <div>Accounts</div>
+          </Route>
+          <Route path="/restaurant-partner/support">
+            <div>Help</div>
+          </Route>
+        </Switch>
+      </div>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
