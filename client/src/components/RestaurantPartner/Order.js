@@ -126,14 +126,59 @@ const OrderHeader = () => {
   );
 };
 
-const DataList = () => {
-  return <div>DataList</div>;
+const DataTable = ({tableHeader, orderList}) => {
+  return (
+    <table className="w-full text-left text-gray-500 my-6">
+      <tr className="h-16 border-b-2 border-gray-100 py-2 text-sm">
+        {
+          tableHeader.map(data => <th className="" key={data}>{data}</th>)
+        }
+      </tr>
+      {
+        orderList.map((order) => (
+          <tr className="h-16 border-b-2 border-gray-100 text-xs">
+            <th className="flex items-center py-4">
+              <div>
+                <svg
+                className="h-6 w-6 text-yellow-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div className="mx-2">Jonathan Hope</div>
+            </th>
+            <th>
+              <div>Main Street no.14</div>
+              <div>3km</div>
+            </th>
+            <th>
+              <div>Fresh Salad Bawl (2)</div>
+              <div>IDR 254.000</div>
+            </th>
+            <th>
+              <div className="ring-1 ring-pink-300 rounded-full text-center bg-pink-100 p-1 text-pink-600">Preparing</div>
+            </th>
+          </tr>
+        ))
+      }
+    </table>
+  );
 };
 
-const OrderList = () => {
+const OrderTable = () => {
+  const tableHeader = ['Customer', 'Address', 'Menu', 'Status']
+  const orderList = ['Customer', 'Address', 'Menu', 'Status','Customer', 'Address', 'Menu', 'Status']
+
   return (
-    <div className="w-2/3 border-2 border-green-400">
-      <div className="my-12 flex justify-between items-center">
+    <div className="w-2/3 my-12">
+      <div className="flex justify-between items-center text-gray-500 text-sm">
         <div className="text-gray-700 text-xl font-bold">Food Order</div>
         <button className="flex ring-1 ring-gray-300 shadow-md rounded-md p-2 mx-6 font-medium tracking-wide">
           <div>
@@ -153,7 +198,7 @@ const OrderList = () => {
           <div>Filter Order</div>
         </button>
       </div>
-      <DataList />
+      <DataTable tableHeader={tableHeader} orderList={orderList} />
     </div>
   );
 };
@@ -169,8 +214,8 @@ const Order = () => {
     <div className="">
       <OrderHeader />
       <div className="border-t-2 border-gray-200"></div>
-      <div className="flex items-center text-gray-500 text-sm">
-        <OrderList />
+      <div className="flex items-center">
+        <OrderTable />
         <OrderDetail />
       </div>
     </div>
