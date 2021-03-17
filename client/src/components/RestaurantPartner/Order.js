@@ -140,7 +140,7 @@ const DataTable = ({tableHeader, orderList}) => {
             <th className="flex items-center py-4">
               <div>
                 <svg
-                className="h-6 w-6 text-yellow-400"
+                className="h-6 w-6 text-gray-700"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -172,12 +172,12 @@ const DataTable = ({tableHeader, orderList}) => {
   );
 };
 
-const OrderTable = () => {
+const OrderTable = ({orderSelected}) => {
   const tableHeader = ['Customer', 'Address', 'Menu', 'Status']
   const orderList = ['Customer', 'Address', 'Menu', 'Status','Customer', 'Address', 'Menu', 'Status']
 
   return (
-    <div className="w-2/3 my-12">
+    <div className={`${orderSelected ? 'w-2/3' : 'w-full'} my-12`}>
       <div className="flex justify-between items-center text-gray-500 text-sm">
         <div className="text-gray-700 text-xl font-bold">Food Order</div>
         <button className="flex ring-1 ring-gray-300 shadow-md rounded-md p-2 mx-6 font-medium tracking-wide">
@@ -210,13 +210,16 @@ const OrderDetail = () => {
 };
 
 const Order = () => {
+  const orderSelected = true
   return (
     <div className="">
       <OrderHeader />
       <div className="border-t-2 border-gray-200"></div>
       <div className="flex items-center">
-        <OrderTable />
-        <OrderDetail />
+        <OrderTable orderSelected={orderSelected}/>
+        {
+          orderSelected && <OrderDetail />
+        }
       </div>
     </div>
   );
